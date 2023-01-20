@@ -19,11 +19,19 @@ public class UserController {
 
     //注册
     @PostMapping("/register")
-    public String register(Model model, Users user) {
+    public String register(Model model, Users user, String userPassword2) {
         //此处的用户名校验主要用于向前端提供错误信息
         //TODO i18n
         if (userService.selectUserByUsername(user.getUserName()) != null) {
             model.addAttribute("loginmsg", "用户名已注册");
+        }
+        //后端密码校验
+        String password = user.getPassword();
+        if (userPassword2 != null && password != null) {
+            if (!userPassword2.equals(password)) {
+                model.addAttribute("registermsg", "注册失败");
+                return "register";
+            }
         }
         Boolean register = userService.register(user);
         if (register) {

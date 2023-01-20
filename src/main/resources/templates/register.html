@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>注册</title>
-
     <!-- 离线 Google 字体: Source Sans Pro -->
     <link rel="stylesheet" type="text/css" th:href="@{/dist/css/google.css}">
     <!-- Font Awesome -->
@@ -13,38 +12,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
     <!-- 主题样式 -->
     <link rel="stylesheet" type="text/css" th:href="@{/dist/css/adminlte.min.css}">
-    <script>
-        function passwordCheck() {
-            var userPassword = document.getElementsByName("password")[0].value;
-            var userPassword2 = document.getElementsByName("userPassword2")[0].value;
-            var tel = document.getElementsByName("telephone")[0].value;
-            var email = document.getElementsByName("email")[0].value;
-
-            if (userPassword !== userPassword2) {
-                alert("密码不一致！");
-                return false;
-            }
-            if (tel.length !== 11) {
-                alert("请输入正确的手机号码！");
-                return false;
-            }
-            return true;
-        }
-    </script>
+    <script type="text/javascript" th:src="@{/js/register.js}"></script>
 </head>
-
-<!--TODO 后期加入前端校验部分-->
-
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
         <a th:href="@{/register}"><b>系统</b>注册</a>
     </div>
-
     <div class="card">
         <div class="card-body register-card-body">
             <p class="login-box-msg">注册新账户</p>
-
             <form th:action="@{/register}" method="post" onsubmit="return passwordCheck()">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="用户名" name="userName">
@@ -62,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-                <!--                read only-->
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="再次输入密码" name="userPassword2">
                     <div class="input-group-append">
@@ -110,14 +86,5 @@
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
-<script>
-    email.onchange = function () {
-        var email = this.value;
-        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-        if (!(reg.test(email))) {
-            alert("邮箱格式不正确!");
-        }
-    }
-</script>
 </body>
 </html>
