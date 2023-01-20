@@ -139,6 +139,12 @@ function editStatus(t, status) {
     }
 }
 
+function topage(num){
+    // 获取关键字输入框的值，为其序列化，
+    var keywords = $("input[name=keywords]").serialize();
+    // 获取当前路径 URL 然后为路径 url 拼接关键字参数并重新提交
+    window.location = window.location.pathname + "?" + keywords + "&pageNum=" + num;
+}
 
 // //搜索（暂时无用）
 //     function search() {

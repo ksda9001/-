@@ -68,7 +68,9 @@
         <!--		遍历传入数据-->
         <tr class="text-c" th:each="m : ${result.data.list}">
             <td><input type="checkbox" class='item' th:value="${m.userID}" name="userID"/></td>
-            <td th:text="${mStat.count}"></td>
+            <td th:text="${m.userID}"></td>
+<!--            行计数器-->
+<!--            <td th:text="${mStat.count}"></td>-->
             <td th:utext="${m.userName}"></td>
             <td th:utext="${m.userPhone}"></td>
             <td th:utext="${m.userEmail}"></td>

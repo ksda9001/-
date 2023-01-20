@@ -11,49 +11,51 @@
     <script type="text/javascript" th:src="@{/lib/html5shiv.js}"></script>
     <script type="text/javascript" th:src="@{/lib/respond.min.js}"></script>
     <![endif]-->
+    <script type="text/javascript" th:src="@{/js/register.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/h-ui/css/H-ui.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/css/H-ui.admin.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/lib/Hui-iconfont/1.0.8/iconfont.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/skin/red/skin.css}" id="skin"/>
     <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/css/style.css}"/>
     <!--[if IE 6]>
-	<script type="text/javascript" th:src="@{/lib/DD_belatedPNG_0.0.8a-min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/DD_belatedPNG_0.0.8a-min.js}"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>添加管理员</title>
 </head>
 <body>
 <article class="page-container">
-    <form class="form form-horizontal" id="form-admin-add">
+    <form class="form form-horizontal" id="form-admin-add" th:action="@{/register}" method="post"
+          onsubmit="return passwordCheck()">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+                <input type="text" class="input-text" name="userName">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password"
+                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码"
                        name="password">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" placeholder="确认新密码" id="password2"
-                       name="password2">
+                <input type="password" class="input-text" autocomplete="off" placeholder="确认新密码"
+                       name="userPassword2">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
             <div class="formControls col-xs-8 col-sm-9 skin-minimal">
                 <div class="radio-box">
-                    <input name="sex" type="radio" id="sex-1" checked>
+                    <input name="userSex" type="radio" id="sex-1" checked>
                     <label for="sex-1">男</label>
                 </div>
                 <div class="radio-box">
-                    <input type="radio" id="sex-2" name="sex">
+                    <input type="radio" id="sex-2" name="userSex">
                     <label for="sex-2">女</label>
                 </div>
             </div>
@@ -61,22 +63,22 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>手机：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+                <input type="text" class="input-text" value="" placeholder="请输入11位手机号" name="userPhone">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>邮箱：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="@" name="email" id="email">
+                <input type="text" class="input-text" placeholder="@" name="userEmail">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">角色：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">管理员</option>
-				<option value="2">用户</option>
+				<option value="sadmin">超级管理员</option>
+				<option value="admin">管理员</option>
+				<option value="user">用户</option>
 			</select>
 			</span></div>
         </div>
@@ -85,6 +87,7 @@
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
+        <h1 style="font-size: 18px" th:text="${registermsg}"></h1>
     </form>
 </article>
 

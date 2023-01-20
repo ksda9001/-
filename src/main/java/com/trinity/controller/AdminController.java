@@ -27,8 +27,9 @@ public class AdminController {
     public String adminList(Model model,
                             @RequestParam(value = "keywords", defaultValue = "") String keywords,
                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                            @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         //进行分页，提供关键字查询
+        //pageSize为分页的行数
         Map<String, Object> search = new HashMap<>();
         search.put("keywords", keywords);
         PageHelper.startPage(pageNum, pageSize);
