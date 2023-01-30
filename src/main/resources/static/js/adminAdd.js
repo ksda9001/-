@@ -38,4 +38,4 @@ $(function () {
         focusCleanup: true,
         success: "valid"
     });
-});
+})

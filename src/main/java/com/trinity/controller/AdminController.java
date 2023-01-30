@@ -76,7 +76,6 @@ public class AdminController {
         Boolean register = userService.register(user, sw);
         if (register) {
             model.addAttribute("msg", "添加成功");
-
         } else {
             model.addAttribute("msg", "添加失败");
         }
