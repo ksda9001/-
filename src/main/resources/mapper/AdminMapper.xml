@@ -26,7 +26,7 @@
         <result property="role" column="role"/>
         <result property="userBirthday" column="userBirthday"/>
     </resultMap>
-
+    <!--启停状态编辑-->
     <update id="editStatus">
         UPDATE user
         <choose>
@@ -42,6 +42,20 @@
             #{ManagerID}
         </foreach>
     </update>
+    <!--批量删除-->
+    <delete id="adminDelete">
+        DELETE FROM user
+        WHERE
+        <foreach collection="arg0" item="ManagerID" separator=" , " open=" userID in ( " close=" ) ">
+            #{ManagerID}
+        </foreach>
+    </delete>
+    <!--单独删除-->
+    <delete id="adminDel">
+        DELETE
+        FROM user
+        WHERE userID = #{userID}
+    </delete>
 
     <select id="getAllManagers" resultType="com.trinity.entity.Users">
         SELECT *

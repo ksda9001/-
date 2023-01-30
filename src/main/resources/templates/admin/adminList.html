@@ -39,12 +39,14 @@
             <button class="btn btn-success" id="search-btn" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
         </div>
     </form>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="datadel()"
+    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:void(0);"
+                                                               th:attr="_href=@{/admin/adminDel}"
+                                                               onclick="admin_del(this)"
                                                                class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
-            href="javascript:;" onclick="admin_add('添加管理员','/adminAdd','800','500')"
+            href="javascript:void(0);" onclick="admin_add('添加管理员','/adminAdd','800','500')"
             class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a>
-    <a class="btn btn-success radius" href="javascript:void(0);" onclick="editStatus(this,1);"><i class="Hui-iconfont">&#xe615;</i> 启用</a>
-                  <a class="btn btn-warning radius" href="javascript:void(0);" onclick="editStatus(this,0);"><i
+    <a class="btn btn-success radius" href="javascript:void(0);" onclick="editStatus(1);"><i class="Hui-iconfont">&#xe615;</i> 启用</a>
+                  <a class="btn btn-warning radius" href="javascript:void(0);" onclick="editStatus(0);"><i
                           class="Hui-iconfont">&#xe631;</i> 停用</a>
     </span> <span
             class="r">共有数据：<strong>[[${result.data.total}]]</strong> 条</span></div>
@@ -69,8 +71,8 @@
         <tr class="text-c" th:each="m : ${result.data.list}">
             <td><input type="checkbox" class='item' th:value="${m.userID}" name="userID"/></td>
             <td th:text="${m.userID}"></td>
-<!--            行计数器-->
-<!--            <td th:text="${mStat.count}"></td>-->
+            <!--            行计数器-->
+            <!--            <td th:text="${mStat.count}"></td>-->
             <td th:utext="${m.userName}"></td>
             <td th:utext="${m.userPhone}"></td>
             <td th:utext="${m.userEmail}"></td>
@@ -90,8 +92,9 @@
                    onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
                    class="ml-5"
                    style="text-decoration:none"><i
-                        class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;"
-                                                                 onclick="admin_del(this,'1')" class="ml-5"
+                        class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:void(0);"
+                                                                 th:onclick="|deleteConfirm('@{/admin/del/{userID}(userID=${m.userID}) }');|"
+                                                                 class="ml-5"
                                                                  style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
             </td>
         </tr>

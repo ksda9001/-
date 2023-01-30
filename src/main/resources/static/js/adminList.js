@@ -29,18 +29,65 @@ function admin_add(title, url, w, h) {
     layer_show(title, url, w, h);
 }
 
-/*管理员-删除*/
-function admin_del(obj, id) {
-    layer.confirm('确认要删除吗？', function (index) {
+/*管理员-单独删除*/
+function deleteConfirm(u) {
+    layer.confirm('确认要删除该账户吗？', function () {
         $.ajax({
-            type: 'POST', url: '', dataType: 'json', success: function (data) {
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {icon: 1, time: 1000});
-            }, error: function (data) {
-                console.log(data.msg);
-            },
+            type: "delete",
+            dataType: "json",
+            url: u,
+            async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+            success: function (data) {
+                if (data.code === 200) {
+                    layer.msg('已删除!', {icon: 6, time: 1000});
+                    //成功后定时刷新页面
+                    setTimeout(() => location.replace(location.href), 1000);
+                } else {
+                    layer.msg('删除失败!', {icon: 5, time: 1000});
+                    setTimeout(() => location.replace(location.href), 1000);
+                }
+            }
         });
     });
+}
+
+/*管理员-批量删除*/
+function admin_del(t) {
+    var check = Check();
+    // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
+    if (check) {
+        var userId = $("input[name=userID]");
+        var obj = Array.from(document.querySelectorAll('.item')); // 获取复选框
+        var objLen = obj.length; // 获取复选框总数
+        var i;
+        var num;
+        num = 0;
+        //统计选中复选框个数
+        for (i = 0; i < objLen; i++) {
+            if (obj[i].checked == true) {
+                num++;
+            }
+        }
+        layer.confirm('确认要删除选中的' + num + '个账户吗？', function () {
+            $.ajax({
+                type: "delete",
+                dataType: "json",
+                url: $(t).attr("_href"),
+                data: userId.serialize(),
+                async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg('已删除!', {icon: 6, time: 1000});
+                        //成功后定时刷新页面
+                        setTimeout(() => location.replace(location.href), 1000);
+                    } else {
+                        layer.msg('删除失败!', {icon: 5, time: 1000});
+                        setTimeout(() => location.replace(location.href), 1000);
+                    }
+                }
+            });
+        });
+    }
 }
 
 /*管理员-编辑*/
@@ -78,9 +125,9 @@ function checkboxs(objNam) {
 }
 
 /* 管理员启用、禁用函数 */
-function editStatus(t, status) {
+function editStatus(status) {
     var check = Check();
-    // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
+    // 获取所有页面要启停的数据集合，并判断用户至少选择了一条数据
     if (check) {
         var userId = $("input[name=userID]");
         var obj = Array.from(document.querySelectorAll('.item')); // 获取复选框
@@ -90,7 +137,7 @@ function editStatus(t, status) {
         num = 0;
         //统计选中复选框个数
         for (i = 0; i < objLen; i++) {
-            if (obj[i].checked == true) {
+            if (obj[i].checked === true) {
                 num++;
             }
         }

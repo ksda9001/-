@@ -13,4 +13,8 @@ public interface AdminMapper {
     List<Users> selectNSearch(Map<String, Object> search);
 
     int editStatus(List<String> IDList, String status);
+
+    int adminDelete(List<String> IDList);
+
+    int adminDel(String userID);
 }

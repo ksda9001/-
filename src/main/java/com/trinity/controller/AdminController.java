@@ -69,7 +69,7 @@ public class AdminController {
         String password = user.getPassword();
         if (userPassword2 != null && password != null) {
             if (!userPassword2.equals(password)) {
-                model.addAttribute("msg", "添加失败");
+                model.addAttribute("msg", "密码不一致");
             }
         }
         String sw = "adminAdd";
@@ -78,6 +78,31 @@ public class AdminController {
             model.addAttribute("msg", "添加成功");
         } else {
             model.addAttribute("msg", "添加失败");
+        }
+    }
+
+    @DeleteMapping("/adminDel")
+    @ResponseBody
+    public ResponseData<String> adminDel(@RequestParam String userID) {
+        //Some Magic.
+        String[] IDS = userID.split(",");
+        List<String> IDList = Arrays.asList(IDS);
+        int test = adminService.adminDelete(IDList);
+        if (test > 0) {
+            return new ResponseData<>(200, "删除成功！", null);
+        } else {
+            return new ResponseData<>(500, "删除失败！", null);
+        }
+    }
+
+    @DeleteMapping("/del/{userID}")
+    @ResponseBody
+    public ResponseData<String> del(@PathVariable String userID) {
+        int test = adminService.adminDel(userID);
+        if (test > 0) {
+            return new ResponseData<>(200, "删除成功！", null);
+        } else {
+            return new ResponseData<>(500, "删除失败！", null);
         }
     }
 }

@@ -28,4 +28,16 @@ public class AdminServiceImpl implements AdminService {
     public int editStatus(List<String> IDList, String status) {
         return adminMapper.editStatus(IDList, status);
     }
+
+    //批量删除
+    @Override
+    public int adminDelete(List<String> IDList) {
+        return adminMapper.adminDelete(IDList);
+    }
+
+    //单独删除
+    @Override
+    public int adminDel(String userID) {
+        return adminMapper.adminDel(userID);
+    }
 }
