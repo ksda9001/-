@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.trinity.entity.ResponseData;
 import com.trinity.entity.Users;
 import com.trinity.service.AdminService;
+import com.trinity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ import java.util.Map;
 public class AdminController {
     @Autowired
     AdminService adminService;
+    @Autowired
+    UserService userService;
 
     //shiro权限校验
     //@RequiresRoles(value = {"admin"})
@@ -52,6 +55,30 @@ public class AdminController {
             return new ResponseData<>(200, "状态修改成功！", null);
         } else {
             return new ResponseData<>(500, "状态修改失败！", null);
+        }
+    }
+
+    @PostMapping("/adminAdd")
+    public void register(Model model, Users user, String userPassword2) {
+        //此处的用户名校验主要用于向前端提供错误信息
+        //TODO i18n
+        if (userService.selectUserByUsername(user.getUserName()) != null) {
+            model.addAttribute("msg", "用户名已存在");
+        }
+        //后端密码校验
+        String password = user.getPassword();
+        if (userPassword2 != null && password != null) {
+            if (!userPassword2.equals(password)) {
+                model.addAttribute("msg", "添加失败");
+            }
+        }
+        String sw = "adminAdd";
+        Boolean register = userService.register(user, sw);
+        if (register) {
+            model.addAttribute("msg", "添加成功");
+
+        } else {
+            model.addAttribute("msg", "添加失败");
         }
     }
 }

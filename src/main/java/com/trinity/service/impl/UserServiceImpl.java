@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     //注册
     @Override
-    public Boolean register(Users user) {
+    public Boolean register(Users user, String sw) {
         //后端校验
         //确保 姓名，密码，电话，邮箱已输入
         if (StringUtils.isEmpty(user.getPassword()) || StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getUserEmail()) || StringUtils.isEmpty(user.getUserPhone())) {
@@ -45,8 +46,10 @@ public class UserServiceImpl implements UserService {
             user.setPassword(password);
         }
         //数据预处理
-        //设置用户权限（默认为用户）
-        user.setRole("user");
+        //设置用户权限,判断请求来源（注册则默认为用户）
+        if (sw.equals("register")){
+            user.setRole("user");
+        }
         //设置启停状态
         user.setUserStatus("enable");
         try {

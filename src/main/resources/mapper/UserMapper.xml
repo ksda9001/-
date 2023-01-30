@@ -34,7 +34,8 @@
     </select>
     <!--    TODO 部分参数暂时未添加-->
     <insert id="addUser" parameterType="com.trinity.entity.Users" keyColumn="userID" useGeneratedKeys="true">
-        INSERT INTO user (userID, userName, password, salt, role, userStatus, userPhone, userEmail)
-        VALUES (#{userID},#{userName},#{password},#{salt},#{role},#{userStatus},#{userPhone},#{userEmail})
+        INSERT INTO user (userID, userName, userSex, password, salt, role, userStatus, userPhone, userEmail)
+        VALUES (#{userID}, #{userName}, #{userSex}, #{password}, #{salt}, #{role}, #{userStatus}, #{userPhone},
+                #{userEmail})
     </insert>
 </mapper>

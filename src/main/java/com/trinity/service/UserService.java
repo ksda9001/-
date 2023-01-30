@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
     //用户注册
-    Boolean register(Users user);
+    Boolean register(Users user, String sw);
 
     //用户登录
     Boolean login(String username, String password);

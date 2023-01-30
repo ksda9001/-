@@ -33,7 +33,8 @@ public class UserController {
                 return "register";
             }
         }
-        Boolean register = userService.register(user);
+        String sw = "register";
+        Boolean register = userService.register(user,sw);
         if (register) {
             model.addAttribute("loginmsg", "注册成功");
             return "login";
