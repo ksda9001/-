@@ -42,6 +42,19 @@
             #{ManagerID}
         </foreach>
     </update>
+    <!--单独启停-->
+    <update id="adminSS">
+        UPDATE user
+        <choose>
+            <when test="param2 ==0">
+                SET userStatus = 'disable'
+            </when>
+            <when test="param2 == 1">
+                SET userStatus = 'enable'
+            </when>
+        </choose>
+        WHERE userID = #{param1}
+    </update>
     <!--批量删除-->
     <delete id="adminDelete">
         DELETE FROM user

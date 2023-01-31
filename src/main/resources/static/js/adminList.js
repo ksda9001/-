@@ -124,6 +124,48 @@ function checkboxs(objNam) {
     return objYN;
 }
 
+function admin_stop(t) {
+    layer.confirm('确认要停用该账户吗？', function () {
+        $.ajax({
+            type: "put",
+            dataType: "json",
+            url: $(t).attr("_href") + "/" + 0,
+            async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+            success: function (data) {
+                if (data.code === 200) {
+                    layer.msg('已停用!', {icon: 6, time: 1000});
+                    //成功后定时刷新页面
+                    setTimeout(() => location.replace(location.href), 1000);
+                } else {
+                    layer.msg('停用失败!', {icon: 5, time: 1000});
+                    setTimeout(() => location.replace(location.href), 1000);
+                }
+            }
+        });
+    });
+}
+
+function admin_start(t) {
+    layer.confirm('确认要启用该账户吗？', function () {
+        $.ajax({
+            type: "put",
+            dataType: "json",
+            url: $(t).attr("_href") + "/" + 1,
+            async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+            success: function (data) {
+                if (data.code === 200) {
+                    layer.msg('已启用!', {icon: 6, time: 1000});
+                    //成功后定时刷新页面
+                    setTimeout(() => location.replace(location.href), 1000);
+                } else {
+                    layer.msg('启用失败!', {icon: 5, time: 1000});
+                    setTimeout(() => location.replace(location.href), 1000);
+                }
+            }
+        });
+    });
+}
+
 /* 管理员启用、禁用函数 */
 function editStatus(status) {
     var check = Check();

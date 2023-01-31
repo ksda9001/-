@@ -126,4 +126,15 @@ public class AdminController {
         model.addAttribute("user", user);
         return "/admin/adminEdit";
     }
+
+    @PutMapping("/adminSS/{userID}/{status}")
+    @ResponseBody
+    public ResponseData<String> adminSS(@PathVariable String userID, @PathVariable String status) {
+        int test = adminService.adminSS(userID, status);
+        if (test > 0) {
+            return new ResponseData<>(200, "删除成功！", null);
+        } else {
+            return new ResponseData<>(500, "删除失败！", null);
+        }
+    }
 }

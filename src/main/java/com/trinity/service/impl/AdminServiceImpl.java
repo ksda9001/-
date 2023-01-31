@@ -40,4 +40,10 @@ public class AdminServiceImpl implements AdminService {
     public int adminDel(String userID) {
         return adminMapper.adminDel(userID);
     }
+
+    //单独启停
+    @Override
+    public int adminSS(String userID, String status) {
+        return adminMapper.adminSS(userID, status);
+    }
 }

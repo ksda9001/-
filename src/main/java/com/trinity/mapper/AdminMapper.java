@@ -17,4 +17,6 @@ public interface AdminMapper {
     int adminDelete(List<String> IDList);
 
     int adminDel(String userID);
+
+    int adminSS(String userID, String status);
 }
