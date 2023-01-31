@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     @PostMapping("/adminAdd")
-    public void register(Model model, Users user, String userPassword2) {
+    public void adminAdd(Model model, Users user, String userPassword2) {
         //此处的用户名校验主要用于向前端提供错误信息
         //TODO i18n
         if (userService.selectUserByUsername(user.getUserName()) != null) {
@@ -73,8 +73,8 @@ public class AdminController {
             }
         }
         String sw = "adminAdd";
-        Boolean register = userService.register(user, sw);
-        if (register) {
+        Boolean add = userService.register(user, sw);
+        if (add) {
             model.addAttribute("msg", "添加成功");
         } else {
             model.addAttribute("msg", "添加失败");
@@ -104,5 +104,26 @@ public class AdminController {
         } else {
             return new ResponseData<>(500, "删除失败！", null);
         }
+    }
+
+    @PostMapping("/adminEdit")
+    public String adminEdit(Model model, Users user, String userPassword2) {
+        //后端密码校验
+        String password = user.getPassword();
+        if (userPassword2 != null && password != null) {
+            if (!userPassword2.equals(password)) {
+                model.addAttribute("msg", "密码不一致");
+            }
+        }
+        String sw = "adminEdit";
+        Boolean edit = userService.register(user, sw);
+        if (edit) {
+            model.addAttribute("msg", "修改成功");
+        } else {
+            model.addAttribute("msg", "修改失败");
+        }
+        //修改完成后将数据带回前端
+        model.addAttribute("user", user);
+        return "/admin/adminEdit";
     }
 }

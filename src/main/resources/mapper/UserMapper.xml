@@ -26,11 +26,30 @@
         <result property="role" column="role"/>
         <result property="userBirthday" column="userBirthday"/>
     </resultMap>
+    <!--    编辑用户状态-->
+    <update id="EditUser">
+        UPDATE user
+        SET userName   = #{userName},
+            userSex    = #{userSex},
+            password   =#{password},
+            salt       = #{salt},
+            role       =#{role},
+            userStatus =#{userStatus},
+            userPhone  = #{userPhone},
+            userEmail  =#{userEmail}
+        WHERE userID = #{userID}
+    </update>
 
     <select id="getUserByUsername" parameterType="java.lang.String" resultMap="BaseResult">
         SELECT *
         FROM user u
         WHERE userName = #{username}
+    </select>
+
+    <select id="getUserByID" resultType="com.trinity.entity.Users">
+        SELECT *
+        FROM user u
+        WHERE userID = #{userID}
     </select>
     <!--    TODO 部分参数暂时未添加-->
     <insert id="addUser" parameterType="com.trinity.entity.Users" keyColumn="userID" useGeneratedKeys="true">

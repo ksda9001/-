@@ -30,8 +30,11 @@ public class UserServiceImpl implements UserService {
         //防止用户名重复
         //Empty != NULL
         //Controller层已进行相同校验，此处用于防止终止SQL造成出错
-        if (userMapper.getUserByUsername(user.getUserName()) != null) {
-            return false;
+        //若为用户修改则不进行校验
+        if (!sw.equals("adminEdit")) {
+            if (userMapper.getUserByUsername(user.getUserName()) != null) {
+                return false;
+            }
         }
         //判断是否加盐，如没有则进行加盐
         if (user.getSalt() == null || user.getSalt().equals("")) {
@@ -47,8 +50,19 @@ public class UserServiceImpl implements UserService {
         }
         //数据预处理
         //设置用户权限,判断请求来源（注册则默认为用户）
-        if (sw.equals("register")){
+        if (sw.equals("register")) {
             user.setRole("user");
+        }
+        if (sw.equals("adminEdit")) {
+            try {
+                Boolean bo = userMapper.EditUser(user);
+                if (bo) {
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
         }
         //设置启停状态
         user.setUserStatus("enable");
@@ -87,8 +101,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users selectUserByID(String id) {
-        return null;
+    public Users selectUserByID(String userID) {
+        return userMapper.getUserByID(userID);
     }
 
     @Override

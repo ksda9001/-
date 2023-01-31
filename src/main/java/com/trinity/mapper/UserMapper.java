@@ -9,4 +9,8 @@ public interface UserMapper {
     Users getUserByUsername(String username);
 
     Boolean addUser(Users user);
+
+    Boolean EditUser(Users user);
+
+    Users getUserByID(String userID);
 }

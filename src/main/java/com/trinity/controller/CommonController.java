@@ -1,9 +1,11 @@
 package com.trinity.controller;
 
+import com.trinity.entity.Users;
 import com.trinity.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -67,9 +69,11 @@ public class CommonController {
         return "queryuserPage";
     }
 
-    @GetMapping("/updateuser")
-    public String updateuser() {
-        return "updateuserPage";
+    @GetMapping("/editUser")
+    public String editUser(Model model, String userID) {
+        Users user = userService.selectUserByID(userID);
+        model.addAttribute("user",user);
+        return "/admin/adminEdit";
     }
 
     @GetMapping("/revoke")
