@@ -16,29 +16,24 @@ public class CommonController {
     @Autowired
     UserService userService;
 
-    @GetMapping({"/", "/login"})
+    @GetMapping({"/login"})
     public String login() {
-        return "login";
+        return "control/login";
     }
 
-    @GetMapping("/invalid")
-    public String invalid() {
-        return "invalid";
-    }
-
-    @RequestMapping("/index")
-    public String index() {
-        return "index";
-    }
+//    @RequestMapping({"/","/index"})
+//    public String index() {
+//        return "index";
+//    }
 
     @GetMapping("/register")
     public String register() {
-        return "register";
+        return "control/register";
     }
 
     @GetMapping("/welcome")
     public String welcome() {
-        return "welcome";
+        return "control/welcome";
     }
 
     //系统登出
@@ -46,17 +41,7 @@ public class CommonController {
     public String logout() {
         //调用Shiro清除token
         SecurityUtils.getSubject().logout();
-        return "login";
-    }
-
-    @GetMapping("/updatePassword")
-    public String updatePassword() {
-        return "updatePassword";
-    }
-
-    @GetMapping("/updatePhone")
-    public String updatePhone() {
-        return "updatePhone";
+        return "control/login";
     }
 
     @GetMapping("/error")
@@ -64,35 +49,10 @@ public class CommonController {
         return "error";
     }
 
-    @GetMapping("/queryuser")
-    public String queryuser() {
-        return "queryuserPage";
-    }
-
     @GetMapping("/editUser")
     public String editUser(Model model, String userID) {
         Users user = userService.selectUserByID(userID);
         model.addAttribute("user",user);
         return "/admin/adminEdit";
-    }
-
-    @GetMapping("/revoke")
-    public String revoke() {
-        return "revokePage";
-    }
-
-    @GetMapping("/addUser")
-    public String addUser() {
-        return "addUserPage";
-    }
-
-    @GetMapping("/adminAdd")
-    public String adminAdd() {
-        return "/admin/adminAdd";
-    }
-
-    @GetMapping("/deleteUser")
-    public String deleteUser() {
-        return "deleteUserPage";
     }
 }

@@ -19,6 +19,7 @@
         <mybatis.version>2.2.2</mybatis.version>
         <shiro.version>1.9.0</shiro.version>
         <fastjson2.version>2.0.23</fastjson2.version>
+        <atlassian.version>0.15.1</atlassian.version>
     </properties>
 
     <dependencies>
@@ -40,6 +41,26 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid.version}</version>
+        </dependency>
+        <!--博客内容转html-->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>${atlassian.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-heading-anchor</artifactId>
+            <version>${atlassian.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>${atlassian.version}</version>
         </dependency>
         <!-- pagehelper分页依赖 -->
         <dependency>

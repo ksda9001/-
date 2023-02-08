@@ -30,17 +30,17 @@ public class UserController {
         if (userPassword2 != null && password != null) {
             if (!userPassword2.equals(password)) {
                 model.addAttribute("registermsg", "注册失败");
-                return "register";
+                return "control/register";
             }
         }
         String sw = "register";
         Boolean register = userService.register(user,sw);
         if (register) {
             model.addAttribute("loginmsg", "注册成功");
-            return "login";
+            return "control/login";
         } else {
             model.addAttribute("registermsg", "注册失败");
-            return "register";
+            return "control/register";
         }
     }
 
@@ -60,11 +60,11 @@ public class UserController {
             user.setSalt(null);
             httpServletRequest.getSession().setAttribute("user", userEntity);
             if (userEntity.getRole().equals("user")) {
-                return "index";
+                return "control/index";
             }
             return "adminIndex";
         }
         model.addAttribute("loginmsg", "用户名或密码错误");
-        return "login";
+        return "control/login";
     }
 }
