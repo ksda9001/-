@@ -15,7 +15,7 @@ public class XMLUtil {
             //创建DOM文档对象
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dFactory.newDocumentBuilder();
-            Document doc = builder.parse(new File("src/main/resources/passwordIterations.xml"));
+            Document doc = builder.parse(new File("main/src/main/resources/passwordIterations.xml"));
             //获取包含类名的文本节点
             NodeList nl = doc.getElementsByTagName("iterations");
             Node classNode = nl.item(0).getFirstChild();
