@@ -2,11 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com</groupId>
+    <groupId>com.trinity</groupId>
     <artifactId>Trinity</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Trinity</name>
     <description>Trinity</description>
+    <packaging>pom</packaging>
+    <!-- 子模块列表 -->
+    <modules>
+        <module>main</module>
+        <module>shop</module>
+        <module>video</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -149,7 +156,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.trinity.TrinityApplication</mainClass>
+                    <mainClass>com.trinity.TrinityMainApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
