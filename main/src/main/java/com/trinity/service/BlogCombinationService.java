@@ -1,6 +1,7 @@
 package com.trinity.service;
 
-import com.trinity.entity.BlogCombination;
+
+import com.commons.entity.BlogCombination;
 
 import java.util.List;
 import java.util.Map;

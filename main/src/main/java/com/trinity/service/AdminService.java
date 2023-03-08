@@ -1,6 +1,7 @@
 package com.trinity.service;
 
-import com.trinity.entity.Users;
+
+import com.commons.entity.Users;
 
 import java.util.List;
 import java.util.Map;

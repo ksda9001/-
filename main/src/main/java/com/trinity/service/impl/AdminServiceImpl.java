@@ -1,6 +1,6 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Users;
+import com.commons.entity.Users;
 import com.trinity.mapper.AdminMapper;
 import com.trinity.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;

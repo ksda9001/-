@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.Users;
+import com.commons.entity.Users;
 import com.trinity.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

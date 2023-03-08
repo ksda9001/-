@@ -1,6 +1,6 @@
 package com.trinity.mapper;
 
-import com.trinity.entity.Type;
+import com.commons.entity.Type;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

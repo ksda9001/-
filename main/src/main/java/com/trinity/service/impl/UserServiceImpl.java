@@ -1,6 +1,6 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Users;
+import com.commons.entity.Users;
 import com.trinity.mapper.UserMapper;
 import com.trinity.service.UserService;
 import com.trinity.util.CONF_PASSWORD;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {

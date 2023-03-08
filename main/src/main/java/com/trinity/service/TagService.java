@@ -1,7 +1,8 @@
 package com.trinity.service;
 
 
-import com.trinity.entity.Tag;
+
+import com.commons.entity.Tag;
 
 import java.util.List;
 import java.util.Map;

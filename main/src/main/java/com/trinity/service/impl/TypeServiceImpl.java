@@ -1,6 +1,6 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Type;
+import com.commons.entity.Type;
 import com.trinity.mapper.TypeMapper;
 import com.trinity.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;

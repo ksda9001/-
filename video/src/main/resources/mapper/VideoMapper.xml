@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.video.mapper.VideoMapper">
+    <resultMap id="Video" type="com.commons.entity.Video">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="author" column="author"/>
+        <result property="size" column="size"/>
+        <result property="type" column="type"/>
+        <result property="path" column="path"/>
+        <result property="uploadTime" column="uploadTime"/>
+        <result property="vv" column="vv"/>
+        <result property="download" column="download"/>
+        <result property="tc" column="tc"/>
+        <result property="typeId" column="typeId"/>
+        <result property="push" column="push"/>
+        <result property="pushTime" column="pushTime"/>
+    </resultMap>
+    <resultMap id="VideoType" type="com.commons.entity.VideoType">
+        <id property="id" column="id"/>
+        <result property="typeName" column="typeName"/>
+    </resultMap>
+    <resultMap id="VideoClick" type="com.commons.entity.VideoClick">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="videoId" column="videoId"/>
+        <result property="num" column="num"/>
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+
+    <insert id="addVideo" parameterType="com.commons.entity.Video">
+        INSERT INTO video (title, size, type, path, uploadTime, author, typeId)
+        VALUES (#{title}, #{size}, #{type}, #{path}, #{uploadTime}, #{author}, #{typeId})
+    </insert>
+
+    <insert id="addVideoClick" parameterType="com.commons.entity.VideoClick">
+        INSERT INTO video_click (username, videoId, updateTime)
+        VALUES (#{username}, #{videoId}, #{updateTime})
+    </insert>
+
+    <update id="addVideoClickNum">
+        UPDATE video_click
+        SET num = num + 1
+        WHERE username = #{username}
+          AND videoId = #{videoId}
+    </update>
+
+    <update id="addVideoPushById">
+        UPDATE video
+        SET push     = #{push},
+            pushTime = #{pushTime}
+        WHERE id = #{id}
+    </update>
+    <!--播放量+1-->
+    <update id="addVideoVv">
+        UPDATE video
+        SET vv = vv + 1
+        WHERE id = #{id}
+    </update>
+
+    <insert id="addVideoDownload">
+        UPDATE video
+        SET download = download + 1
+        WHERE id = #{id}
+    </insert>
+    <!--评论数+1-->
+    <update id="addVideoTc">
+        UPDATE video
+        SET tc = tc + 1
+        WHERE id = #{id}
+    </update>
+
+    <insert id="addTypeByTypeName" parameterType="com.commons.entity.VideoType">
+        INSERT INTO video_type (typeName)
+        VALUES (#{typeName})
+    </insert>
+    <!--TODO File delete-->
+    <delete id="deleteVideoById">
+        DELETE
+        FROM video
+        WHERE id = #{id}
+    </delete>
+
+    <update id="delVideoTc">
+        UPDATE video
+        SET tc = tc - 1
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectVideoClick" resultType="java.lang.Integer" parameterType="com.commons.entity.VideoClick">
+        SELECT COUNT(1)
+        FROM video_click
+        WHERE username = #{username}
+          AND videoId = #{videoId}
+    </select>
+
+    <select id="getVideoList" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+    </select>
+    <!--Magic !-->
+    <select id="getVideoListByHeat" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        ORDER BY tc * 4 + vv * 4 + download * 2 DESC
+    </select>
+
+    <select id="getVideoListBySystem" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE push = 1
+    </select>
+
+    <select id="getVideoListByType" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE typeId = #{typeId}
+    </select>
+    <!--Another Magic!-->
+    <select id="getOtherVideoListByType" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE typeId = (SELECT typeId FROM video WHERE id = #{id})
+          AND id!=#{id}
+        ORDER BY tc*4+vv*4+download*2 DESC
+    </select>
+
+    <select id="getVideoListByAuthor" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE author = #{author}
+    </select>
+
+    <select id="getVideoListRecord" resultType="com.commons.entity.Video">
+        SELECT DISTINCT tv.*
+        FROM video_click AS tvc,
+             video AS tv
+        WHERE tv.id IN (SELECT tvc.videoId WHERE tvc.username = #{username})
+    </select>
+
+    <select id="getVideoListByOnly" resultType="com.commons.entity.Video" parameterType="com.commons.entity.VideoClick">
+        SELECT DISTINCT tv.*
+        FROM video_click AS tvc,
+             video AS tv
+        WHERE tvc.username!= #{username}
+          AND tvc.username IN (SELECT username FROM video_click WHERE videoId = #{videoId})
+          AND tvc.videoId != #{videoId}
+          AND tvc.videoId = tv.id
+    </select>
+
+    <select id="getVideoById" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectTypeIdByName" resultType="java.lang.Integer">
+        SELECT id
+        FROM video_type
+        WHERE typeName = #{typeName}
+    </select>
+    <!--TODO MAYBE WRONG-->
+    <select id="getVideoByName" resultType="com.commons.entity.Video">
+        SELECT *
+        FROM video
+        WHERE title LIKE '%${_parameter}%'
+           OR author LIKE '%${_parameter}%'
+    </select>
+
+    <select id="getOneType" resultType="com.commons.entity.VideoType">
+        SELECT *
+        FROM video_type
+    </select>
+
+    <select id="getTypeByTypeName" resultType="com.commons.entity.VideoType">
+        SELECT *
+        FROM video_type
+        WHERE typeName = #{typeName}
+    </select>
+
+    <select id="getVideoTypeByLast" resultType="java.lang.Integer">
+        SELECT video.typeId
+        FROM video
+                 JOIN video_click ON video.id = video_click.videoId
+        WHERE video_click.username = #{username}
+        ORDER BY video_click.updateTime DESC limit 1
+    </select>
+
+    <select id="getVideoAuthorByNum" resultType="java.lang.String">
+        SELECT video.author
+        FROM video
+                 JOIN video_click ON video.id = video_click.videoId
+        WHERE video_click.username = #{username}
+        ORDER BY video_click.num DESC limit 1
+    </select>
+
+
+</mapper>

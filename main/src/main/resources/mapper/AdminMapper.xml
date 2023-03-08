@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.trinity.mapper.AdminMapper">
-    <resultMap id="BaseResult" type="com.trinity.entity.Users">
+    <resultMap id="BaseResult" type="com.commons.entity.Users">
         <id property="userID" column="userID"/>
         <result property="userName" column="userName"/>
         <result property="userSex" column="userSex"/>
@@ -70,14 +70,14 @@
         WHERE userID = #{userID}
     </delete>
 
-    <select id="getAllManagers" resultType="com.trinity.entity.Users">
+    <select id="getAllManagers" resultType="com.commons.entity.Users">
         SELECT *
         FROM user
         WHERE role = admin
     </select>
 
     <!--    1=1使之始终生效-->
-    <select id="selectNSearch" resultType="com.trinity.entity.Users" resultMap="BaseResult">
+    <select id="selectNSearch" resultType="com.commons.entity.Users" resultMap="BaseResult">
         SELECT *
         FROM user
         WHERE 1 = 1

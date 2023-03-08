@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.Comment;
+import com.commons.entity.Comment;
 import com.trinity.service.BlogService;
 import com.trinity.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

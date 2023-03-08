@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.Blog;
+import com.commons.entity.Blog;
 import com.trinity.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class BlogController {
     @Autowired
     BlogService blogService;
-
 
     @PostMapping(value = "/blog")
     public ModelAndView insertBlog(Blog blog) {

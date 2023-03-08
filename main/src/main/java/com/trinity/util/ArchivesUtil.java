@@ -1,7 +1,7 @@
 package com.trinity.util;
 
 
-import com.trinity.entity.Blog;
+import com.commons.entity.Blog;
 
 import java.text.SimpleDateFormat;
 import java.util.*;

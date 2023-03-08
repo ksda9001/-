@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.Tag;
+import com.commons.entity.Tag;
 import com.trinity.service.TagService;
 import com.trinity.util.MapUtil;
 import org.springframework.beans.factory.annotation.Autowired;

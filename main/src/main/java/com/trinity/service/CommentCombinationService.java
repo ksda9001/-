@@ -1,8 +1,7 @@
 package com.trinity.service;
 
-
-import com.trinity.entity.Comment;
-import com.trinity.entity.CommentCombination;
+import com.commons.entity.Comment;
+import com.commons.entity.CommentCombination;
 
 import java.util.List;
 import java.util.Map;

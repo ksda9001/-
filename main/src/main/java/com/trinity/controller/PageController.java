@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.*;
+import com.commons.entity.*;
 import com.trinity.service.*;
 import com.trinity.util.ArchivesUtil;
 import com.trinity.util.MapUtil;

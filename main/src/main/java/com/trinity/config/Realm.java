@@ -1,6 +1,6 @@
 package com.trinity.config;
 
-import com.trinity.entity.Users;
+import com.commons.entity.Users;
 import com.trinity.service.UserService;
 import com.trinity.util.CONF_PASSWORD;
 import com.trinity.util.XMLUtil;

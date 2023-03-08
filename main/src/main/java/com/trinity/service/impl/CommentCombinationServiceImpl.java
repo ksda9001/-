@@ -1,7 +1,7 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Comment;
-import com.trinity.entity.CommentCombination;
+import com.commons.entity.Comment;
+import com.commons.entity.CommentCombination;
 import com.trinity.service.BlogService;
 import com.trinity.service.CommentCombinationService;
 import com.trinity.service.CommentService;

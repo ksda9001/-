@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(VideoApplication.class);
+		return application.sources(TrinityVideoApplication.class);
 	}
 
 }

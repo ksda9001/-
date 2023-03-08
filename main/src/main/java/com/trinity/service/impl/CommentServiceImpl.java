@@ -1,6 +1,6 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Comment;
+import com.commons.entity.Comment;
 import com.trinity.mapper.CommentMapper;
 import com.trinity.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

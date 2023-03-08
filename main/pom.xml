@@ -11,4 +11,18 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- 坐标 ID -->
     <artifactId>main</artifactId>
+    <dependencies>
+        <!-- Shiro依赖 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-starter</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.trinity</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

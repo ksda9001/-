@@ -5,7 +5,7 @@
 <mapper namespace="com.trinity.mapper.BlogMapper">
     <!-- 字段映射 -->
 
-    <resultMap id="blogMap" type="com.trinity.entity.Blog">
+    <resultMap id="blogMap" type="com.commons.entity.Blog">
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="summary" property="summary" jdbcType="VARCHAR" />
@@ -161,7 +161,7 @@
     </insert>
 
     <!-- 插入数据 -->
-    <insert id="addBlog" parameterType="com.trinity.entity.Blog">
+    <insert id="addBlog" parameterType="com.commons.entity.Blog">
         INSERT INTO blog (
             id, title, summary, content, date, type, views, tags,
             comments, pictureUrl, isRecommend, isReprint, isAppreciation, isComment, property, state
@@ -213,7 +213,7 @@
     </insert>
     
     <!-- 修改数据 -->
-    <update id="updateBlog" parameterType="com.trinity.entity.Blog">
+    <update id="updateBlog" parameterType="com.commons.entity.Blog">
         UPDATE blog
         <set>
             <if test="title != null">

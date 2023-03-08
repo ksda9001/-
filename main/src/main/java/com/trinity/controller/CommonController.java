@@ -1,6 +1,6 @@
 package com.trinity.controller;
 
-import com.trinity.entity.Users;
+import com.commons.entity.Users;
 import com.trinity.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +53,6 @@ public class CommonController {
     public String editUser(Model model, String userID) {
         Users user = userService.selectUserByID(userID);
         model.addAttribute("user",user);
-        return "/admin/adminEdit";
+        return "admin/adminEdit";
     }
 }

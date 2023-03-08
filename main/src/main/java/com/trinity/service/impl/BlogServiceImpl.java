@@ -1,8 +1,8 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Blog;
-import com.trinity.entity.Tag;
-import com.trinity.entity.Type;
+import com.commons.entity.Blog;
+import com.commons.entity.Tag;
+import com.commons.entity.Type;
 import com.trinity.mapper.BlogMapper;
 import com.trinity.mapper.CommentMapper;
 import com.trinity.mapper.TagMapper;

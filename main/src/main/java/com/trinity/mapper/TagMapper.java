@@ -1,7 +1,7 @@
 package com.trinity.mapper;
 
 
-import com.trinity.entity.Tag;
+import com.commons.entity.Tag;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.trinity.service.impl;
 
-import com.trinity.entity.Tag;
+import com.commons.entity.Tag;
 import com.trinity.mapper.TagMapper;
 import com.trinity.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.trinity.controller;
 
+import com.commons.entity.ResponseData;
+import com.commons.entity.Users;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.trinity.entity.ResponseData;
-import com.trinity.entity.Users;
 import com.trinity.service.AdminService;
 import com.trinity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

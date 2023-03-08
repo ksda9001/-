@@ -1,7 +1,7 @@
 package com.trinity.mapper;
 
 
-import com.trinity.entity.Blog;
+import com.commons.entity.Blog;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
