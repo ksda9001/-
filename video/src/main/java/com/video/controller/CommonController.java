@@ -20,4 +20,9 @@ public class CommonController {
         model.addAttribute("types",videoTypeList);
         return "videoUpload";
     }
+
+    @GetMapping("/playTest")
+    public String playTest(){
+        return "playTest";
+    }
 }

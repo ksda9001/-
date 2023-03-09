@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>ArtPlayer Demo</title>
+    <meta charset="UTF-8" />
+    <style>
+        .artplayer-app {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="artplayer-app"></div>
+<script src="/artplayer/artplayer.js"></script>
+<script>
+    var art = new Artplayer({
+        container: '.artplayer-app',
+        volume: 0.5,
+        isLive: false,
+        muted: false,
+        autoplay: false,
+        pip: true,
+        autoMini: true,
+        screenshot: true,
+        setting: true,
+        loop: true,
+        flip: true,
+        playbackRate: true,
+        aspectRatio: true,
+        fullscreen: true,
+        fullscreenWeb: true,
+        miniProgressBar: true,
+        mutex: true,
+        playsInline: true,
+        autoPlayback: false,
+        airplay: true,
+        theme: "#23ade5",
+        lang: navigator.language.toLowerCase(),
+    });
+
+    setTimeout(() => {
+        art.url = 'testField/video5.mp4';
+    }, 1000);
+</script>
+</body>
+</html>
