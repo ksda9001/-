@@ -24,7 +24,7 @@
     <script type="text/javascript" th:src="@{/lib/DD_belatedPNG_0.0.8a-min.js}"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>文章发布</title>
+    <title>视频上传</title>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 视频管理 <span
@@ -90,6 +90,12 @@
             <!--                </div>-->
             <!--            </div>-->
 
+            <div class="field">
+                <div class="ui left labeled input fluid">
+                    <label class="ui teal basic label">封面</label>
+                    <input type="text" name="pictureUrl" placeholder="封面地址">
+                </div>
+            </div>
 
             <div class="ui right aligned container">
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>

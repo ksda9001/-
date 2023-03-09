@@ -26,4 +26,6 @@ public class Video implements Serializable {
     private Integer push;
     private Timestamp pushTime;
     private List<VideoClick> videoClick;
+    private String pictureUrl;
+    private String comments;
 }

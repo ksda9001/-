@@ -11,6 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- 坐标 ID -->
     <artifactId>main</artifactId>
+    <properties>
+        <shiro.version>1.9.0</shiro.version>
+    </properties>
+
     <dependencies>
         <!-- Shiro依赖 -->
         <dependency>

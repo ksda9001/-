@@ -25,7 +25,7 @@ public class UploadController {
 
     //视频上传器
     @PostMapping("/videoUpload")
-    public void videoUpload(String title, String type, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) throws IOException {
+    public void videoUpload(String title, String pictureUrl, String type, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) throws IOException {
         String extName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         //Artplayer默认支持mp4、ogg、webm
         if (!extName.equals(".mp4") && !extName.equals(".ogg") && !extName.equals(".webm")) {
@@ -52,6 +52,8 @@ public class UploadController {
             video.setUploadTime(timestamp);
             //视频标题
             video.setTitle(title);
+            //视频封面
+            video.setPictureUrl(pictureUrl);
             //文件大小
             video.setSize(this.getSize(videoPath));
             //获取文件后缀名
