@@ -55,6 +55,8 @@ public interface VideoMapper {
 
     VideoType getTypeByTypeName(String typeName);
 
+    VideoType getTypeByTypeId(Integer id);
+
     void addTypeByTypeName(VideoType typeName);
 
     Integer getVideoTypeByLast(String username);

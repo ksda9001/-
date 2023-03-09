@@ -60,4 +60,6 @@ public interface VideoService {
     VideoType getTypeBySTypeName(String typeName);
 
     void addTypeByTypeName(VideoType videoType);
+
+    VideoType getTypeByTypeId(Integer id);
 }

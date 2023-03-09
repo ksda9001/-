@@ -48,52 +48,30 @@
             <div class="field">
                 <div class="ui left labeled action input field">
                     <label class="ui compact teal basic label">分类</label>
-                    <div class="ui selection dropdown fluid">
-                        <i class="ui dropdown icon"></i>
-                        <div class="default text">分类</div>
-                        <div class="menu">
-                            <div class="item" th:each="type,iterStat:${types}" th:data-value="${type.id}" th:text="${type.typeName}"></div>
-                        </div>
-                    </div>
+                    <select class="ui selection dropdown fluid" id="select_id" name="type">
+                        <option th:each="type:${types}" data-value="1" th:data-value="${type.id}"
+                                th:text="${type.typeName}"></option>
+                    </select>
                 </div>
             </div>
-
-            <!--            <div class="filed">-->
-            <!--                <div class="ui left labeled input fluid">-->
-            <!--                    <label class="ui teal basic label">封面</label>-->
-            <!--                    <input type="text" name="pictureUrl" placeholder="封面引用地址" th:value="${blog?.getPictureUrl()}">-->
-            <!--                </div>-->
-            <!--            </div>-->
-
-            <!--            <div class="inline fields m-padded-tb-small">-->
-            <!--                <div class="field">-->
-            <!--                    <div class="ui checkbox">-->
-            <!--                        <input type="checkbox" id="recommend" name="isRecommend" value="1" class="hidden"-->
-            <!--                               th:checked="${blog?.getIsRecommend()}">-->
-            <!--                        <label for="recommend">推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-            <!--                    </div>-->
-            <!--                    <div class="ui checkbox">-->
-            <!--                        <input type="checkbox" id="shareInfo" name="isReprint" value="1" class="hidden"-->
-            <!--                               th:checked="${blog?.getIsReprint()}">-->
-            <!--                        <label for="shareInfo">转载声明&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-            <!--                    </div>-->
-            <!--                    <div class="ui checkbox">-->
-            <!--                        <input type="checkbox" id="appreciation" name="isAppreciation" value="1" class="hidden"-->
-            <!--                               th:checked="${blog?.getIsAppreciation()}">-->
-            <!--                        <label for="appreciation">赞赏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
-            <!--                    </div>-->
-            <!--                    <div class="ui checkbox">-->
-            <!--                        <input type="checkbox" id="comment" name="isComment" value="1" class="hidden"-->
-            <!--                               th:checked="${blog?.getIsComment()}">-->
-            <!--                        <label for="comment">留言</label>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
 
             <div class="field">
                 <div class="ui left labeled input fluid">
                     <label class="ui teal basic label">封面</label>
                     <input type="text" name="pictureUrl" placeholder="封面地址">
+                </div>
+            </div>
+
+            <div class="inline fields m-padded-tb-small">
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="shareInfo" name="isReprint" value="1" class="hidden">
+                        <label for="shareInfo">转载声明&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    </div>
+                    <div class="ui checkbox">
+                        <input type="checkbox" id="comment" name="isComment" value="1" class="hidden">
+                        <label for="comment">留言</label>
+                    </div>
                 </div>
             </div>
 
@@ -109,6 +87,7 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/js/videoUpload.js}"></script>
+
 </body>
+<script type="text/javascript" th:src="@{/js/videoUpload.js}"></script>
 </html>

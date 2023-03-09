@@ -167,4 +167,9 @@ public class VideoServiceImpl implements VideoService {
     public void addTypeByTypeName(VideoType videoType) {
         videoMapper.addTypeByTypeName(videoType);
     }
+
+    @Override
+    public VideoType getTypeByTypeId(Integer id) {
+        return videoMapper.getTypeByTypeId(id);
+    }
 }

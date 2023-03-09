@@ -29,8 +29,8 @@
     </resultMap>
 
     <insert id="addVideo" parameterType="com.commons.entity.Video">
-        INSERT INTO video (title, pictureUrl,size, type, path, uploadTime, author, typeId)
-        VALUES (#{title}, #{pictureUrl},#{size}, #{type}, #{path}, #{uploadTime}, #{author}, #{typeId})
+        INSERT INTO video (title, pictureUrl,isReprint,isComment,size, type, path, uploadTime, author, typeId)
+        VALUES (#{title}, #{pictureUrl}, #{isReprint}, #{isComment},#{size}, #{type}, #{path}, #{uploadTime}, #{author}, #{typeId})
     </insert>
 
     <insert id="addVideoClick" parameterType="com.commons.entity.VideoClick">
@@ -177,7 +177,11 @@
         FROM video_type
         WHERE typeName = #{typeName}
     </select>
-
+    <select id="getTypeByTypeId" resultType="com.commons.entity.VideoType">
+        SELECT *
+        FROM video_type
+        WHERE id = #{id}
+    </select>
     <select id="getVideoTypeByLast" resultType="java.lang.Integer">
         SELECT video.typeId
         FROM video

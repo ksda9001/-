@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>在线视频播放</title>
+  <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+  <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+  <script th:src="@{/static/js/jquery-3.3.1.min.js}"></script>
+  <script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/static/css/style5.css}">
+  <script th:src="@{/artplayer/artplayer.js}"></script>
+  <style>
+    .artplayer-app {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+<input id="title" hidden="hidden" th:value="${title}">
+<input id="path" hidden="hidden" th:value="${path}">
+<input id="pic" hidden="hidden" th:value="${pic}">
+<div class="artplayer-app"></div>
+<!--<div th:replace="header::header1"></div><br/><br/><br/>-->
+<!--<div class="panel panel-default">-->
+<!--  <div class="panel-body" align="center">-->
+<!--    <div id="a1" align="center" th:text="${title}"></div><br/>-->
+<!--    <video width="600" height="400" align="center" controls>-->
+<!--      <source th:src="@{${path}}" type="video/mp4">-->
+
+<!--      您的浏览器不支持 HTML5 video 标签。-->
+<!--    </video>-->
+
+<!--  </div>-->
+<!--&lt;!&ndash;  <center>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button><a  th:href="ct " target="mainFrame">评论</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button><a th:href="@{'downloadVideoById?id='+${video_id}}">下载</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button><a th:href="@{'getVideoListByOnly?videoId='+${video_id}}">实时推荐</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button><a th:href="@{'getVideoListByAuthor'}">他的视频</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button><a th:href="@{'getOtherVideoListByType'}">同类视频</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </center>&ndash;&gt;-->
+<!--</div>-->
+</body>
+<script th:src="@{/js/videoPlay.js}"></script>
+</html>

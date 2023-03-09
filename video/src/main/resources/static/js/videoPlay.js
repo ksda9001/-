@@ -1,8 +1,10 @@
 var path = document.getElementById("path").value;
 var titletext = document.getElementById("title").value;
+var pic = document.getElementById("pic").value;
 var art = new Artplayer({
     container: '.artplayer-app',
     title: titletext,
+    poster: pic,
     volume: 0.5,
     isLive: false,
     muted: false,

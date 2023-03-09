@@ -28,4 +28,7 @@ public class Video implements Serializable {
     private List<VideoClick> videoClick;
     private String pictureUrl;
     private String comments;
+    private Integer isReprint;
+    private Integer isComment;
+    private Integer property;
 }
