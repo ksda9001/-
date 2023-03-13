@@ -25,7 +25,8 @@ public class DownloadController {
 
         Video video = videoService.getVideoById(id);
         String dict = XMLUtil.getText();
-        File file = new File(dict, video.getPath());
+        String path = video.getPath().replace("/video/", "");
+        File file = new File(dict, path);
         try {
             response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(video.getPath(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {

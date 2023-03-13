@@ -36,8 +36,25 @@
             <div class="field required">
                 <div class="ui right labeled action input ">
                     <input type="text" name="title" placeholder="标题">
+                    <div class="ui selection dropdown orange basic label compact">
+                        <input type="hidden" name="property" th:value="原创">
+
+                        <i class="ui dropdown icon"></i>
+                        <div class="text">原创</div>
+                        <div class="ui menu">
+                            <div class="item" data-value="1">原创</div>
+                            <div class="item" data-value="2">转载</div>
+                            <div class="item" data-value="3">翻译</div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+            <!--            <div class="field required">-->
+            <!--                <div class="ui right labeled action input ">-->
+            <!--                    <input type="text" name="title" placeholder="标题">-->
+            <!--                </div>-->
+            <!--            </div>-->
             <div class="field">
                 <div class="ui right labeled action input field">
                     <label class="ui compact teal basic label">视频</label>

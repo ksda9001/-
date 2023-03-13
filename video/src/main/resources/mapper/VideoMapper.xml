@@ -29,8 +29,8 @@
     </resultMap>
 
     <insert id="addVideo" parameterType="com.commons.entity.Video">
-        INSERT INTO video (title, pictureUrl,isReprint,isComment,size, type, path, uploadTime, author, typeId)
-        VALUES (#{title}, #{pictureUrl}, #{isReprint}, #{isComment},#{size}, #{type}, #{path}, #{uploadTime}, #{author}, #{typeId})
+        INSERT INTO video (title, pictureUrl, isReprint, isComment, property, size, type, path, uploadTime, author, typeId)
+        VALUES (#{title}, #{pictureUrl}, #{isReprint}, #{isComment}, #{property}, #{size}, #{type}, #{path}, #{uploadTime}, #{author}, #{typeId})
     </insert>
 
     <insert id="addVideoClick" parameterType="com.commons.entity.VideoClick">
