@@ -25,7 +25,7 @@ public class UploadController {
 
     //视频上传器
     @PostMapping("/videoUpload")
-    public void videoUpload(String title, String pictureUrl, Integer isReprint, Integer isComment, Integer property, String type, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) throws IOException {
+    public String videoUpload(String title, String pictureUrl, Integer isReprint, Integer isComment, Integer property, String type, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) throws IOException {
         String extName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         //Artplayer默认支持mp4、ogg、webm
         if (!extName.equals(".mp4") && !extName.equals(".ogg") && !extName.equals(".webm")) {
@@ -69,11 +69,12 @@ public class UploadController {
             boolean result = videoService.addVideo(video);
             //返回处理消息
             if (result) {
-                model.addAttribute("msg", "上传成功！");
+                model.addAttribute("message", "上传成功！");
             } else {
-                model.addAttribute("msg", "上传失败！");
+                model.addAttribute("message", "上传失败！");
             }
         }
+        return "tip";
     }
 
     //上传文件重命名去重复

@@ -30,9 +30,6 @@ public class VideoController {
 
     @GetMapping("/videoPlayById/{id}")
     public String videoPlayById(@PathVariable String id, Model model, HttpSession session) {
-//       TODO 后期加入session
-
-//        Users user = (Users) session.getAttribute("user");
         Video video = videoService.getVideoById(Integer.valueOf(id));
         model.addAttribute("title", video.getTitle());
         model.addAttribute("path", video.getPath());
@@ -41,7 +38,6 @@ public class VideoController {
         videoService.addVideoVv(Integer.valueOf(id));
 
         VideoClick videoClick = new VideoClick();
-//        videoClick.setUsername(user.getUsername());
         videoClick.setVideoId(Integer.valueOf(id));
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         videoClick.setUpdateTime(timestamp);
@@ -198,7 +194,7 @@ public class VideoController {
     }
 
     @GetMapping(value = "/videoPushById")
-    public String changeRoleById(Integer id) {
+    public String changeRoleById(Integer id, Model model) {
         Video video = videoService.getVideoById(id);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -215,7 +211,7 @@ public class VideoController {
         if (result) {
             return "forward:/getVideoList";
         }
-
-        return "failed";
+        model.addAttribute("message", "推送失败！");
+        return "tip";
     }
 }

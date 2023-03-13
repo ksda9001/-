@@ -22,7 +22,8 @@ public class TypeController {
                 VideoType videoType1 = new VideoType();
                 videoType1.setTypeName(type);
                 videoService.addTypeByTypeName(videoType1);
-                return "admin/uploadSuccess";
+                model.addAttribute("message","添加成功！");
+                return "tip";
             }else{
                 model.addAttribute("error","已有类型！");
                 return "control/videoTypeAdd";
