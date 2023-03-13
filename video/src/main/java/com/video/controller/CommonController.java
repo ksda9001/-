@@ -25,4 +25,7 @@ public class CommonController {
     public String playTest(){
         return "playTest";
     }
+
+    @GetMapping(value = "/toAddVideoTypeList")
+    public String toAddVideoTypeList() { return "control/videoTypeAdd"; }
 }
