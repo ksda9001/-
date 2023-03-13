@@ -33,8 +33,8 @@ function pre() {
 
 function loadData(){
     $.ajax({
-        url:"/commentCombination",
-        data:{"begin":begin,"size":size,blog:$("[name='blog']").val()},
+        url:"/VideoCommentCombination",
+        data:{"begin":begin,"size":size,video:$("[name='video']").val()},
         type:"get",
         success:function (result) {
             $("#table-container").html(result);
@@ -43,7 +43,7 @@ function loadData(){
 }
 function deleteComment(button) {
     $.ajax({
-        url: "/comment",
+        url: "/videoComment",
         data:{"id":$(button).attr("data-id")},
         type:"delete",
 

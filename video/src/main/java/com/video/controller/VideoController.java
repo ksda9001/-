@@ -1,11 +1,9 @@
 package com.video.controller;
 
-import com.commons.entity.Users;
-import com.commons.entity.Video;
-import com.commons.entity.VideoClick;
-import com.commons.entity.VideoType;
+import com.commons.entity.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.video.service.VideoCommentService;
 import com.video.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +12,20 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class VideoController {
     @Autowired
     VideoService videoService;
+
+    @Autowired
+    VideoCommentService videoCommentService;
 
     @GetMapping("/videoPlayById/{id}")
     public String videoPlayById(@PathVariable String id, Model model, HttpSession session) {
@@ -84,6 +87,12 @@ public class VideoController {
         } else {
             videoService.addVideoClickNum(videoClick);
         }
+
+
+        Map<String, List<VideoComment>> map = videoCommentService.findVideoCommentsByVideo(id);
+        model.addAttribute("parents",map.get("parents"));
+        model.addAttribute("sons", map.get("sons"));
+
 
         return "videoPlay";
     }

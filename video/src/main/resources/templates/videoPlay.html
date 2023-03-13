@@ -116,80 +116,80 @@
       </div>
     </div>
 
-<!--    &lt;!&ndash;留言区域&ndash;&gt;-->
-<!--    <div th:fragment="refresh_area" th:if="${isComment}">-->
-<!--      <div class="ui bottom attached segment" id="comment-container">-->
-<!--        <div class="ui comments">-->
-<!--          <h3 class="ui dividing header">评论</h3>-->
-<!--          <div class="comment" th:each="parent,iter:${parents}">-->
-<!--            <a class="ui avatar image ">-->
-<!--              <img class="ui avatar image" th:src="${parent.getIsAdmin()==1}?'/images/头像.jpg':'/images/普通头像.jpg'">-->
-<!--            </a>-->
-<!--            <div class="content">-->
-<!--              <a class="author" th:text="${parent.getName()}">Matt</a>-->
-<!--              <div class="ui  basic teal mini label " th:if="${parent.getIsAdmin()==1}">博主</div>-->
-<!--              <div class="metadata">-->
-<!--                <span class="date" th:text="${#dates.format(parent.getTime(),'yyyy-MM-dd HH:ss')}">Today at 5:42PM</span>-->
-<!--              </div>-->
-<!--              <div class="text" th:text="${parent.getContent()}">-->
-<!--                How artistic!-->
-<!--              </div>-->
-<!--              <div class="actions">-->
-<!--                <a class="reply" th:data-name="${parent.getName()}" th:data-parent="${parent.getId()}" onclick="changeParent(this)">回复</a>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="comments" >-->
-<!--              <div class="comment" th:each="son,iter:${sons}" th:if="${son.getParent()==parent.getId()}">-->
-<!--                <a class="avatar">-->
-<!--                  <img class="ui avatar img-circle" th:src="${son.getIsAdmin()==1}?'/images/头像.jpg':'/images/普通头像.jpg'">-->
-<!--                </a>-->
-<!--                <div class="content" >-->
-<!--                  <a class="author" th:text="${son.getName()}">Jenny Hess</a>-->
-<!--                  <div class="ui  basic teal mini  label " th:if="${son.getIsAdmin()==1}">博主</div>-->
-<!--                  <div class="metadata">-->
-<!--                    <span class="date" th:text="${#dates.format(son.getTime(),'yyyy-MM-dd HH:ss')}">Just now</span>-->
-<!--                  </div>-->
-<!--                  <div class="text" th:text="${son.getContent()}">-->
-<!--                    Elliot you are always so right :)-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+    <!--留言区域-->
+    <div th:fragment="refresh_area" th:if="${isComment}">
+      <div class="ui bottom attached segment" id="comment-container">
+        <div class="ui comments">
+          <h3 class="ui dividing header">评论</h3>
+          <div class="comment" th:each="parent,iter:${parents}">
+            <a class="ui avatar image ">
+              <img class="ui avatar image" th:src="${parent.getIsAdmin()==1}?'/images/头像.jpg':'/images/普通头像.jpg'">
+            </a>
+            <div class="content">
+              <a class="author" th:text="${parent.getName()}">Matt</a>
+              <div class="ui  basic teal mini label " th:if="${parent.getIsAdmin()==1}">博主</div>
+              <div class="metadata">
+                <span class="date" th:text="${#dates.format(parent.getTime(),'yyyy-MM-dd &nbsp; HH:mm:ss')}">Today at 5:42PM</span>
+              </div>
+              <div class="text" th:text="${parent.getContent()}">
+                How artistic!
+              </div>
+              <div class="actions">
+                <a class="reply" th:data-name="${parent.getName()}" th:data-parent="${parent.getId()}" onclick="changeParent(this)">回复</a>
+              </div>
+            </div>
+            <div class="comments" >
+              <div class="comment" th:each="son,iter:${sons}" th:if="${son.getParent()==parent.getId()}">
+                <a class="avatar">
+                  <img class="ui avatar img-circle" th:src="${son.getIsAdmin()==1}?'/images/头像.jpg':'/images/普通头像.jpg'">
+                </a>
+                <div class="content" >
+                  <a class="author" th:text="${son.getName()}">Jenny Hess</a>
+                  <div class="ui  basic teal mini  label " th:if="${son.getIsAdmin()==1}">博主</div>
+                  <div class="metadata">
+                    <span class="date" th:text="${#dates.format(son.getTime(),'yyyy-MM-dd HH:ss')}">Just now</span>
+                  </div>
+                  <div class="text" th:text="${son.getContent()}">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<!--        </div>-->
-<!--      </div>-->
-<!--      <form action="/comment" id="comment"  class="ui form"  method="post">-->
-<!--        <input type="hidden" name="blog" th:value="${blog.getId()}">-->
-<!--        <input id="parent" type="hidden" name="parent" value="-1">-->
-<!--        <div class="field">-->
-<!--          <textarea id="id_content" name="content" placeholder="请输入评论信息...(如果误点击了回复，请刷新页面再评论)"></textarea>-->
-<!--        </div>-->
-<!--        <div class="fields">-->
-<!--          <div class="field m-mobile-wide">-->
-<!--            <div class="ui left icon input m-margin-bottom-small ">-->
-<!--              <i class="user icon"></i>-->
-<!--              <input type="text" name="name" placeholder="姓名">-->
-<!--            </div>-->
-<!--          </div>-->
+        </div>
+      </div>
+      <form action="/videoComment" id="videoComment"  class="ui form"  method="post">
+        <input type="hidden" name="video" th:value="${video_id}">
+        <input id="parent" type="hidden" name="parent" value="-1">
+        <div class="field">
+          <textarea id="id_content" name="content" placeholder="请输入评论信息...(如果误点击了回复，请刷新页面再评论)"></textarea>
+        </div>
+        <div class="fields">
+          <div class="field m-mobile-wide">
+            <div class="ui left icon input m-margin-bottom-small ">
+              <i class="user icon"></i>
+              <input type="text" name="name" placeholder="姓名">
+            </div>
+          </div>
 
-<!--          <div class="field m-mobile-wide">-->
-<!--            <div class="ui left icon input  m-margin-bottom-small ">-->
-<!--              <i class="mail icon"></i>-->
-<!--              <input type="text" name="email" placeholder="邮箱">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="field  m-margin-bottom-small m-mobile-wide ">-->
-<!--            <button class="ui button teal m-mobile-wide" type="submit"><i class="ui edit icon"></i>评论</button>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="ui error message"></div>-->
-<!--      </form>-->
-<!--    </div>-->
+          <div class="field m-mobile-wide">
+            <div class="ui left icon input  m-margin-bottom-small ">
+              <i class="mail icon"></i>
+              <input type="text" name="email" placeholder="邮箱">
+            </div>
+          </div>
+          <div class="field  m-margin-bottom-small m-mobile-wide ">
+            <button class="ui button teal m-mobile-wide" type="submit"><i class="ui edit icon"></i>评论</button>
+          </div>
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </div>
 
 
-<!--  </div>-->
-<!--</div>-->
+  </div>
+</div>
 
 <div class="ui vertical icon buttons  m-fixed m-padded m-right-bottom">
 

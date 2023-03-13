@@ -60,7 +60,7 @@
                     <td th:text="${comment.getName()}"></td>
                     <td th:text="${comment.getBlog()}"></td>
                     <td th:text="${comment.getContent()}"></td>
-                    <td th:text="${#dates.format(comment.getTime(),'yyyy-MM-dd HH:mm')}"></td>
+                    <td th:text="${#dates.format(comment.getTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
                     <td>
                         <a class="ui button  teal basic mini " th:href="'/admin/comments-details/'+${comment.getId()}">详情</a>
                         <a class="ui button  red basic mini " th:attr="data-id=${comment.getId()}"
