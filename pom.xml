@@ -24,7 +24,6 @@
         <pagehelper.version>1.4.2</pagehelper.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <mybatis.version>2.2.2</mybatis.version>
-        <shiro.version>1.9.0</shiro.version>
         <fastjson2.version>2.0.23</fastjson2.version>
         <atlassian.version>0.15.1</atlassian.version>
     </properties>
@@ -42,16 +41,6 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis -->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
         </dependency>
         <!-- Druid数据源 -->
         <dependency>

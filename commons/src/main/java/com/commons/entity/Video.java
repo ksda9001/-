@@ -21,11 +21,9 @@ public class Video implements Serializable {
     private Integer vv;
     private Integer download;
     private String author;
-    private Integer tc;
     private Integer typeId;
     private Integer push;
     private Timestamp pushTime;
-    private List<VideoClick> videoClick;
     private String pictureUrl;
     private String comments;
     private Integer isReprint;

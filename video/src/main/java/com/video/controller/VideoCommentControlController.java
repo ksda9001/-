@@ -17,6 +17,7 @@ public class VideoCommentControlController {
     VideoCommentService videoCommentService;
     @Autowired
     VideoCommentCombinationService videoCommentCombinationService;
+
     @GetMapping("/control/comments")
     public ModelAndView comments() {
         ModelAndView mv = new ModelAndView();
@@ -37,8 +38,6 @@ public class VideoCommentControlController {
     }
 
     /**
-     * 由于前台页面都不footer部分都要有最新博客推荐，所以抽象分离出来，将其封装成一个方法
-     *
      * @param mv
      * @return
      */

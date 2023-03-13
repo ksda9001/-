@@ -18,7 +18,7 @@ public class CommonController {
     public String videoUpload(Model model){
         List<VideoType> videoTypeList = videoService.getOneType();
         model.addAttribute("types",videoTypeList);
-        return "videoUpload";
+        return "control/videoUpload";
     }
 
     @GetMapping("/playTest")

@@ -28,30 +28,6 @@ public class VideoController {
     @Autowired
     VideoCommentService videoCommentService;
 
-    @GetMapping("/videoPlayById/{id}")
-    public String videoPlayById(@PathVariable String id, Model model, HttpSession session) {
-        Video video = videoService.getVideoById(Integer.valueOf(id));
-        model.addAttribute("title", video.getTitle());
-        model.addAttribute("path", video.getPath());
-        model.addAttribute("video_id", video.getId());
-        session.setAttribute("videoId", video.getId());
-        videoService.addVideoVv(Integer.valueOf(id));
-
-        VideoClick videoClick = new VideoClick();
-        videoClick.setVideoId(Integer.valueOf(id));
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        videoClick.setUpdateTime(timestamp);
-
-        Integer num = videoService.selectVideoClick(videoClick);
-        if (num != 1) {
-            videoService.addVideoClick(videoClick);
-        } else {
-            videoService.addVideoClickNum(videoClick);
-        }
-
-        return "videoPlay";
-    }
-
     @GetMapping("/videoPlayById")
     public String videoPlayById(Integer id, Model model, HttpSession session) {
 //        Users user = (Users) session.getAttribute("user");
@@ -69,21 +45,7 @@ public class VideoController {
         model.addAttribute("isReprint", video.getIsReprint());
         model.addAttribute("isComment", video.getIsComment());
         model.addAttribute("video_id", video.getId());
-//        session.setAttribute("videoId", video.getId());
         videoService.addVideoVv(id);
-
-        VideoClick videoClick = new VideoClick();
-//        videoClick.setUsername(user.getUsername());
-        videoClick.setVideoId(id);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        videoClick.setUpdateTime(timestamp);
-
-        Integer num = videoService.selectVideoClick(videoClick);
-        if (num != 1) {
-            videoService.addVideoClick(videoClick);
-        } else {
-            videoService.addVideoClickNum(videoClick);
-        }
 
 
         Map<String, List<VideoComment>> map = videoCommentService.findVideoCommentsByVideo(id);

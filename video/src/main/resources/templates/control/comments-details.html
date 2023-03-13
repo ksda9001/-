@@ -43,7 +43,7 @@
         </div>
         <div class="ui attached segment">
             <div th:unless="${comment.getParent()==-1}">
-                回复评论：<a th:href="@{'/admin/comments-details/'+${comment.getParent()}}">父评论</a>
+                回复评论：<a th:href="@{'/control/comments-details/'+${comment.getParent()}}">父评论</a>
             </div>
             <div th:if="${comment.getParent()==-1}">
                 回复评论：<a>无</a>
