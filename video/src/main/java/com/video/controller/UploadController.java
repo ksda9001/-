@@ -1,8 +1,8 @@
 package com.video.controller;
 
-import com.commons.entity.Users;
 import com.commons.entity.Video;
 import com.video.service.VideoService;
+import com.video.util.XMLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +34,7 @@ public class UploadController {
             Video video = new Video();
             //获取上传后的文件名
             String videoName = file.getOriginalFilename();
-            String path = ResourceUtils.getURL("classpath:").getPath() + "static/videoResource";
+            String path = XMLUtil.getText();
             //文件可进行重命名去重复
             String newVideoName = this.getName(videoName);  //根据上传的文件名重新生成一份新的文件名
             File videoPath = new File(path, newVideoName);
@@ -45,7 +45,7 @@ public class UploadController {
             //TODO 后期添加用户模块
 //            Users user = (Users) session.getAttribute("user");
 //            video.setAuthor(user.getUserName());
-            video.setPath("/videoResource/" + newVideoName);
+            video.setPath("/video/" + newVideoName);
             //跨平台存疑
             //获取系统时钟
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());

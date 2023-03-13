@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -64,13 +65,13 @@ public class VideoController {
         model.addAttribute("title", video.getTitle());
         model.addAttribute("type", videoType.getTypeName());
         model.addAttribute("path", video.getPath());
-        model.addAttribute("time",video.getUploadTime());
-        model.addAttribute("vv",video.getVv());
-        model.addAttribute("pic",video.getPictureUrl());
-        model.addAttribute("pictureUrl",video.getPictureUrl());
-        model.addAttribute("property",video.getProperty());
-        model.addAttribute("isReprint",video.getIsReprint());
-        model.addAttribute("isComment",video.getIsComment());
+        model.addAttribute("time", video.getUploadTime());
+        model.addAttribute("vv", video.getVv());
+        model.addAttribute("pic", video.getPictureUrl());
+        model.addAttribute("pictureUrl", video.getPictureUrl());
+        model.addAttribute("property", video.getProperty());
+        model.addAttribute("isReprint", video.getIsReprint());
+        model.addAttribute("isComment", video.getIsComment());
         model.addAttribute("video_id", video.getId());
 //        session.setAttribute("videoId", video.getId());
         videoService.addVideoVv(id);
@@ -90,7 +91,7 @@ public class VideoController {
 
 
         Map<String, List<VideoComment>> map = videoCommentService.findVideoCommentsByVideo(id);
-        model.addAttribute("parents",map.get("parents"));
+        model.addAttribute("parents", map.get("parents"));
         model.addAttribute("sons", map.get("sons"));
 
 
@@ -170,5 +171,51 @@ public class VideoController {
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("type", 6);
         return "videoIndex";
+    }
+
+
+    @GetMapping(value = "/getVideoByNameByAdmin")
+    public String getVideoByNameByAdmin(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                        String title, ModelMap model) {
+        PageHelper.startPage(pageNum, 5);
+        PageHelper.orderBy("uploadTime desc");
+        List<Video> list = videoService.getVideoByName(title);
+
+        PageInfo pageInfo = new PageInfo(list);
+        model.addAttribute("pageInfo", pageInfo);
+        return "control/videoList";
+    }
+
+    @GetMapping(value = "/getVideoList")
+    public String getVideoList(@RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
+        PageHelper.startPage(num, 5);
+        PageHelper.orderBy("uploadTime desc");
+        List<Video> videoList = videoService.getVideoList();
+
+        PageInfo pageInfo = new PageInfo(videoList);
+        model.addAttribute("pageInfo", pageInfo);
+        return "control/videoList";
+    }
+
+    @GetMapping(value = "/videoPushById")
+    public String changeRoleById(Integer id) {
+        Video video = videoService.getVideoById(id);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        if (video.getPush() == 0) {
+            video.setPush(1);
+            video.setPushTime(timestamp);
+        } else {
+            video.setPush(0);
+            video.setPushTime(null);
+        }
+
+
+        boolean result = videoService.addVideoPushById(video);
+        if (result) {
+            return "forward:/getVideoList";
+        }
+
+        return "failed";
     }
 }
