@@ -52,7 +52,12 @@ public class CommonController {
     @GetMapping("/editUser")
     public String editUser(Model model, String userID) {
         Users user = userService.selectUserByID(userID);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "admin/adminEdit";
+    }
+
+    @GetMapping("/pictureUpload")
+    public String videoUpload() {
+        return "pictureUpload/pictureUpload";
     }
 }
