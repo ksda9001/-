@@ -15,10 +15,13 @@
     <![endif]-->
     <link rel="stylesheet" th:href="@{/blog/css/simpleControl.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/lib/Hui-iconfont/1.0.8/iconfont.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/skin/red/skin.css}" id="skin"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/css/style.css}"/>
     <link rel="stylesheet" th:href="@{/blog/Semantic-UI-CSS-master/semantic.min.css}">
     <link rel="stylesheet" th:href="@{/blog/css/myblog.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/h-ui/css/H-ui.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/css/H-ui.admin.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/Hui-iconfont/1.0.8/iconfont.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/skin/red/skin.css}" id="skin"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/h-ui.admin/css/style.css}"/>
     <script th:src="@{/blog/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/blog/Semantic-UI-CSS-master/semantic.min.js}"></script>
     <!--[if IE 6]>
@@ -29,7 +32,10 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 文章管理 <span
-        class="c-gray en">&gt;</span> 文章编辑</nav>
+        class="c-gray en">&gt;</span> 文章编辑<a class="btn btn-success radius r"
+                                                 style="line-height:1.6em;margin-top:3px"
+                                                 onclick="PageRefresh()" title="刷新"><i
+        class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
         <div class="ui form segment">

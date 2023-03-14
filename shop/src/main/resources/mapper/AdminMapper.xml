@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.AdminMapper">
+    <resultMap id="BaseResult" type="com.commons.entity.Users">
+        <id property="userID" column="userID"/>
+        <result property="userName" column="userName"/>
+        <result property="userSex" column="userSex"/>
+        <result property="password" column="password"/>
+        <result property="userhand" column="userhand"/>
+        <result property="userAddress" column="userAddress"/>
+        <result property="userPhone" column="userPhone"/>
+        <result property="userQQ" column="userQQ"/>
+        <result property="userEmail" column="userEmail"/>
+        <result property="userCollection" column="userCollection"/>
+        <result property="userPayCard" column="userPayCard"/>
+        <result property="userStatus" column="userStatus"/>
+        <result property="userLoginTime" column="userLoginTime"/>
+        <result property="userIP" column="userIP"/>
+        <result property="userPayPassword" column="userPayPassword"/>
+        <result property="userRMB" column="userRMB"/>
+        <result property="salt" column="salt"/>
+        <result property="safeQuestion1" column="safeQuestion1"/>
+        <result property="answer1" column="answer1"/>
+        <result property="safeQuestion2" column="safeQuestion2"/>
+        <result property="answer2" column="answer2"/>
+        <result property="role" column="role"/>
+        <result property="userBirthday" column="userBirthday"/>
+    </resultMap>
+    <!--启停状态编辑-->
+    <update id="editStatus">
+        UPDATE user
+        <choose>
+            <when test="param2 ==0">
+                SET userStatus = 'disable'
+            </when>
+            <when test="param2 == 1">
+                SET userStatus = 'enable'
+            </when>
+        </choose>
+        WHERE
+        <foreach collection="param1" item="ManagerID" separator=" , " open=" userID in ( " close=" ) ">
+            #{ManagerID}
+        </foreach>
+    </update>
+    <!--单独启停-->
+    <update id="adminSS">
+        UPDATE user
+        <choose>
+            <when test="param2 ==0">
+                SET userStatus = 'disable'
+            </when>
+            <when test="param2 == 1">
+                SET userStatus = 'enable'
+            </when>
+        </choose>
+        WHERE userID = #{param1}
+    </update>
+    <!--批量删除-->
+    <delete id="adminDelete">
+        DELETE FROM user
+        WHERE
+        <foreach collection="arg0" item="ManagerID" separator=" , " open=" userID in ( " close=" ) ">
+            #{ManagerID}
+        </foreach>
+    </delete>
+    <!--单独删除-->
+    <delete id="adminDel">
+        DELETE
+        FROM user
+        WHERE userID = #{userID}
+    </delete>
+
+    <select id="getAllManagers" resultType="com.commons.entity.Users">
+        SELECT *
+        FROM user
+        WHERE role = admin
+    </select>
+
+    <!--    1=1使之始终生效-->
+    <select id="selectNSearch" resultType="com.commons.entity.Users" resultMap="BaseResult">
+        SELECT *
+        FROM user
+        WHERE 1 = 1
+          AND (userID LIKE '%${keywords}' OR
+               userName LIKE '%${keywords}' OR
+               userPhone LIKE '%${keywords}' OR
+               userEmail LIKE '%${keywords}' OR
+               role LIKE '%${keywords}')
+    </select>
+</mapper>
