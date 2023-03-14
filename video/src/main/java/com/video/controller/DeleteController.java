@@ -6,7 +6,7 @@ import com.video.service.VideoService;
 import com.video.util.XMLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.File;
@@ -20,7 +20,7 @@ public class DeleteController {
     VideoCommentService videoCommentService;
 
     @GetMapping(value = "/deleteVideoById")
-    public String deleteVideoById(Integer id, ModelMap model) {
+    public String deleteVideoById(Integer id, Model model) {
 
         Video video = videoService.getVideoById(id);
 
@@ -36,6 +36,7 @@ public class DeleteController {
                 }
             }
         }
-        return "failed";
+        model.addAttribute("message","删除失败");
+        return "tip";
     }
 }

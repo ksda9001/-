@@ -54,7 +54,7 @@
         INSERT INTO video_type (typeName)
         VALUES (#{typeName})
     </insert>
-    <!--TODO File delete-->
+
     <delete id="deleteVideoById">
         DELETE
         FROM video
