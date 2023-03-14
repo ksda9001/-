@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="Bookmark" th:href="@{/favicon.ico}">
+    <link rel="Shortcut Icon" th:href="@{/favicon.ico}"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" th:src="@{/lib/html5shiv.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/blog/css/simpleControl.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/Hui-iconfont/1.0.8/iconfont.css}"/>
+    <link rel="stylesheet" th:href="@{/blog/Semantic-UI-CSS-master/semantic.min.css}">
+    <link rel="stylesheet" th:href="@{/blog/css/myblog.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" th:src="@{/lib/DD_belatedPNG_0.0.8a-min.js}"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>新增类型</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商品管理 <span
+        class="c-gray en">&gt;</span> 新增类型
+</nav>
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <!--右侧下面部分-->
+                <!--页头-->
+                <div class="page-header">
+                    <h1>类型
+                        <small>增加</small>
+                    </h1>
+                    <!--                    <h3 class="updatatip">上传视频时,文件过大,请勿重复提交!</h3>-->
+                </div>
+                <!--发布项目到index.html列表-->
+                <div class="sendObject center-block text-center">
+                    <form id="loginform" class="form-horizontal" method="post"
+                          th:action="@{shopAddType}">
+
+                        <div class="form-group">
+                            <label for="inputOne" class="col-sm-2 control-label">类型名</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="type" class="form-control" id="inputOne"
+                                       placeholder="请输入类型名">
+                                <span th:text="${error}"/>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default updatabtn" alt="">确定</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/blog/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/blog/Semantic-UI-CSS-master/semantic.min.js}"></script>
+</body>
+</html>

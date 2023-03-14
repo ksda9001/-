@@ -55,4 +55,6 @@ public class CommonController {
         model.addAttribute("user", user);
         return "admin/adminEdit";
     }
+    @GetMapping(value = "/toAddVideoTypeList")
+    public String toAddVideoTypeList() { return "shopControl/shopTypeAdd"; }
 }

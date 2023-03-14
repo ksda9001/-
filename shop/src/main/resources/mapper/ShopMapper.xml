@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.ShopMapper">
+    <resultMap id="Shop" type="com.commons.entity.Shop">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="cost" column="cost"/>
+        <result property="content" column="content"/>
+        <result property="pictureUrl" column="pictureUrl"/>
+        <result property="typeId" column="typeId"/>
+        <result property="views" column="views"/>
+        <result property="date" column="date"/>
+        <result property="state" column="state"/>
+        <result property="isComment" column="isComment"/>
+        <result property="isRecommend" column="isRecommend"/>
+    </resultMap>
+    <resultMap id="ShopType" type="com.commons.entity.ShopType">
+        <id property="id" column="id"/>
+        <result property="typeName" column="typeName"/>
+    </resultMap>
+    <insert id="addTypeByTypeName">
+        INSERT INTO shop_type (typeName)
+        VALUES (#{typeName})
+    </insert>
+    <select id="getTypeByTypeName" resultType="com.commons.entity.ShopType">
+        SELECT *
+        FROM shop_type
+        WHERE typeName = #{typeName}
+    </select>
+
+
+</mapper>
