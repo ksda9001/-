@@ -39,8 +39,8 @@
     <div class="ui container">
         <div action="#" class="ui form segment" method="post">
             <div class="fields inline">
-                <form method="get" role="search" th:action="@{getVideoByNameByAdmin}">
-                    <input type="text" name="title" placeholder="请输入视频名关键字">
+                <form method="get" role="search" th:action="@{getShopByNameByAdmin}">
+                    <input type="text" name="title" placeholder="请输入商品关键字">
                     <button class="ui small teal basic button"><i class="search icon"></i>搜索</button>
                 </form>
             </div>
@@ -50,49 +50,42 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>文件名</th>
-                    <th>文件类型</th>
-                    <th>上传时间</th>
-                    <th>播放量</th>
-                    <th>下载量</th>
-                    <th>属性</th>
+                    <th>价格</th>
+                    <th>标题</th>
+                    <th>状态</th>
+                    <th>浏览量</th>
+                    <th>累计购买量</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody th:if="${pageInfo != null}">
-                <tr th:each="video:${pageInfo.list}">
-                    <td th:text="${video.id}"></td>
-                    <td th:text="${video.title}"></td>
-                    <td th:text="${video.type}"></td>
-                    <td th:text="${video.uploadTime}"></td>
-                    <td th:text="${video.vv}"></td>
-                    <td th:text="${video.download}"></td>
-                    <td th:if="${video.property} == 0"></td>
-                    <td th:if="${video.property} == 1">原创</td>
-                    <td th:if="${video.property} == 2">转载</td>
-                    <td th:if="${video.property} == 3">翻译</td>
+                <tr th:each="shop:${pageInfo.list}">
+                    <td th:text="${shop.id}"></td>
+                    <td th:text="${shop.cost}"></td>
+                    <td th:text="${shop.title}"></td>
+                    <td th:text="${shop.state}"></td>
+                    <td th:text="${shop.vv}"></td>
+                    <td th:text="${shop.buy}"></td>
                     <td>
-                        <a class="ui button  teal basic mini "
-                           th:href="@{'videoPlayById?id='+${video.id}}">播放</a>
-                        <a class="ui button  blue basic mini " th:if="${video.push != 1}" th:text="推送"
-                           th:href="@{'videoPushById?id='+${video.id}}"></a>
-                        <a class="ui button  red basic mini " th:if="${video.push == 1}" th:text="取消"
-                           th:href="@{'videoPushById?id='+${video.id}}"></a>
+                        <a class="ui button  blue basic mini " th:if="${shop.push != 1}" th:text="推荐"
+                           th:href="@{'shopPushById?id='+${shop.id}}"></a>
+                        <a class="ui button  red basic mini " th:if="${shop.push == 1}" th:text="取消"
+                           th:href="@{'shopPushById?id='+${shop.id}}"></a>
                         <a class="ui button  red basic mini "
-                           th:href="@{'deleteVideoById?id='+${video.id}}">删除</a>
+                           th:href="@{'deleteShopById?id='+${shop.id}}">删除</a>
                     </td>
 
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
                         <div class="ui pagination menu mini">
-                            <a th:href="@{'getVideoList'}" class="ui item ">首页</a>
+                            <a th:href="@{'getShopList'}" class="ui item ">首页</a>
                             <a th:if="${pageInfo.hasPreviousPage}"
-                               th:href="@{'getVideoList?pageNum='+${pageInfo.pageNum-1}}" class="ui item ">上一页</a>
+                               th:href="@{'getShopList?pageNum='+${pageInfo.pageNum-1}}" class="ui item ">上一页</a>
                             <a th:if="${pageInfo.hasNextPage}"
-                               th:href="@{'getVideoList?pageNum='+${pageInfo.pageNum+1}}" class="ui item ">下一页</a>
-                            <a th:href="@{'getVideoList?pageNum='+${pageInfo.pages }}" class="ui item ">末页</a>
+                               th:href="@{'getShopList?pageNum='+${pageInfo.pageNum+1}}" class="ui item ">下一页</a>
+                            <a th:href="@{'getShopList?pageNum='+${pageInfo.pages }}" class="ui item ">末页</a>
                         </div>
                     </th>
                 </tr>
@@ -101,7 +94,7 @@
             <div class="col-md-6">
                 当前<span class="label label-default" th:text="${pageInfo.pageNum }"></span>页
                 &nbsp;&nbsp;&nbsp;共<span class="label label-default" th:text="${pageInfo.pages}"></span>页
-                &nbsp;&nbsp;&nbsp;共<span class="label label-default" th:text="${pageInfo.total}"></span>个视频
+                &nbsp;&nbsp;&nbsp;共<span class="label label-default" th:text="${pageInfo.total}"></span>个商品
             </div>
         </div>
     </div>

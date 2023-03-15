@@ -16,8 +16,8 @@ public class ShopServiceImpl implements ShopService {
 
 
     @Override
-    public Integer selectTypeIdByName(String type) {
-        return shopMapper.selectTypeIdByName(type);
+    public Integer selectTypeIdByName(String typeName) {
+        return shopMapper.selectTypeIdByName(typeName);
     }
 
     @Override
@@ -71,7 +71,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void addTypeByTypeName(ShopType shopType1) {
-        shopMapper.addTypeByTypeName(shopType1);
+    public void addTypeByTypeName(ShopType typeName) {
+        shopMapper.addTypeByTypeName(typeName);
+    }
+
+    @Override
+    public int deleteShopById(Integer id) {
+        return shopMapper.deleteShopById(id);
     }
 }

@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/lib/Hui-iconfont/1.0.8/iconfont.css}"/>
     <link rel="stylesheet" th:href="@{/blog/Semantic-UI-CSS-master/semantic.min.css}">
     <link rel="stylesheet" th:href="@{/blog/css/myblog.css}">
-    <link rel="stylesheet" th:href="@{/blog/lib/editor.md-master/css/editormd.min.css}">
     <script type="text/javascript" th:src="@{/blog/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/blog/Semantic-UI-CSS-master/semantic.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/blog/lib/editor.md-master/css/editormd.min.css}">
     <!--[if IE 6]>
     <script type="text/javascript" th:src="@{/lib/DD_belatedPNG_0.0.8a-min.js}"></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -55,10 +55,10 @@
                     </select>
                 </div>
             </div>
-<!--            <input id="content" type="hidden">-->
+
             <div class="field">
                 <div id="md-content" style="z-index: 1 !important;">
-                    <textarea name="content" placeholder="商品介绍" th:text="${blog?.getContent()}"></textarea>
+                    <textarea name="content" placeholder="商品介绍"></textarea>
                     [TOC]
                     #### Disabled options
 
@@ -107,7 +107,6 @@
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
                 <button type="submit" class="ui button teal" name="state" value="0">保存</button>
                 <button type="submit" class="ui button red" name="state" value="1">发布</button>
-                <button type="submit" class="ui button red">发布商品</button>
             </div>
         </form>
     </div>

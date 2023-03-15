@@ -30,4 +30,6 @@ public interface ShopService {
     ShopType getTypeByTypeName(String type);
 
     void addTypeByTypeName(ShopType shopType1);
+
+    int deleteShopById(Integer id);
 }

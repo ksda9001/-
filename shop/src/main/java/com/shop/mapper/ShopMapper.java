@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface ShopMapper {
-    Integer selectTypeIdByName(String type);
+    Integer selectTypeIdByName(String typeName);
 
     boolean addShop(Shop shop);
 
@@ -30,5 +30,7 @@ public interface ShopMapper {
 
     ShopType getTypeByTypeName(String type);
 
-    void addTypeByTypeName(ShopType shopType1);
+    void addTypeByTypeName(ShopType typeName);
+
+    int deleteShopById(Integer id);
 }
