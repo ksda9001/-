@@ -21,9 +21,9 @@
             <a href="/getVideoListByUser" class="m-item item m-mobile-hide"><i class="video icon"></i>视频</a>
             <a href="http://127.0.0.1:8080/about" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
             <div class="m-item right item  m-mobile-hide">
-                <form th:action="@{getVideoByName}" method="get">
+                <form th:action="@{getShopByName}" method="get">
                     <div class="ui action input inverted transparent ">
-                        <input type="text" name="title" placeholder="请输入视频名关键字...">
+                        <input type="text" name="title" placeholder="请输入商品名关键字...">
                         <button class="ui icon button" type="submit">
                             <i class="search icon"></i>
                         </button>
@@ -47,7 +47,7 @@
                 <div class="ui segment top attached ">
                     <div class="ui middle aligned grid two column">
                         <div class="column">
-                            <h3 class="ui header teal">视频</h3>
+                            <h3 class="ui header teal">商品</h3>
                         </div>
                         <div class="column right aligned">
                             共<h2 class="ui orange header m-inline-block mth" th:text="${pageInfo.total}">
@@ -55,46 +55,33 @@
                         </div>
                     </div>
                 </div>
+                <span th:text="${msg}"></span>
                 <!--列表-->
-                <div class="ui attached segment ">
-                    <span th:text="${msg}"></span>
-                    <div class="ui padded segment vertical m-padded-b-small m-mobile-clear"
-                         th:each="video:${pageInfo.list}">
-                        <div class="ui grid mobile reversed stackable">
-                            <div class="ui eleven wide column">
-                                <a th:href="@{'videoPlayById?id='+${video.id}}" target="_blank">
-                                    <h3 class="ui header" th:text="${video.title}"></h3>
-                                </a>
-                                <div class="ui grid">
-                                    <div class="eleven wide column">
-                                        <div class="ui list horizontal link mini ">
-                                            <div class="item">
-                                                <img src="/images/头像.jpg" class="ui avatar image">
-                                                <div class="content"><a href="#" class="header ">追梦</a></div>
-                                            </div>
-                                            <div class="item">
-                                                <i class="calendar icon"></i><span
-                                                    th:text="${#dates.format(video.uploadTime,'yyyy-MM-dd')}">0000-00-00</span>
-                                            </div>
-                                            <div class="item">
-                                                <i class="eye icon"></i><span th:text="${video.vv}">0</span>
-                                                &nbsp;&nbsp;
-                                                <i class="download icon"></i><span th:text="${video.download}">0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="ui two column grid">
+                    <div class="column" th:each="shop:${pageInfo.list}">
+                        <div class="ui fluid image">
+                            <a th:href="@{'shopDetail?id='+${shop.id}}" target="_blank">
+                                <img th:src="${shop.pictureUrl}" class="ui round image ">
+                            </a>
+                        </div>
+                        <a th:href="@{'shopDetail?id='+${shop.id}}" target="_blank">
+                            <h3 class="ui header" th:text="${shop.title}"></h3>
+                        </a>
+                        <a th:href="@{'shopDetail?id='+${shop.id}}" target="_blank">
+                            <h5 style="color: #2d698c" class="ui header" th:text="'¥' + ${shop.cost}"></h5>
+                        </a>
+                        <div class="ui list horizontal link mini ">
+                            <div class="item">
+                                <i class="calendar icon"></i><span
+                                    th:text="${#dates.format(shop.date,'yyyy-MM-dd')}">0000-00-00</span>
                             </div>
-                            <div class="ui five wide column m-padded-tb-large">
-
-                                <a th:href="@{'videoPlayById?id='+${video.id}}" target="_blank">
-                                    <img th:src="${video.pictureUrl}" class="ui round image ">
-                                </a>
+                            <div class="item">
+                                <i class="eye icon"></i><span th:text="${shop.vv}">0</span>
+                                &nbsp;&nbsp;
+                                <i class="shopping cart icon"></i><span th:text="${shop.buy}">0</span>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
 
                 <!--底部-->
@@ -102,23 +89,23 @@
                     <div class="ui middle aligned grid two column">
                         <div class="column" th:if="${pageInfo.hasPreviousPage}">
                             <a class="ui button basic mini teal" th:if="${type == 0}"
-                               th:href="@{'getVideoByName?title='+${title}+'&pageNum='+${pageInfo.pageNum-1}}">上一页</a>
+                               th:href="@{'getShopByName?title='+${title}+'&pageNum='+${pageInfo.pageNum-1}}">上一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 1}"
-                               th:href="@{'getVideoListByUser?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
+                               th:href="@{'getShopListByUser?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 2}"
-                               th:href="@{'getVideoListByHeat?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
+                               th:href="@{'getShopListByHeat?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 3}"
-                               th:href="@{'getVideoListBySystem?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
+                               th:href="@{'getShopListBySystem?pageNum='+${pageInfo.pageNum-1}}">上一页</a>
                         </div>
                         <div class="column right aligned" th:if="${pageInfo.hasNextPage}">
                             <a class="ui button basic mini teal" th:if="${type == 0}"
-                               th:href="@{'getVideoByName?title='+${title}+'&pageNum='+${pageInfo.pageNum+1}}">下一页</a>
+                               th:href="@{'getShopByName?title='+${title}+'&pageNum='+${pageInfo.pageNum+1}}">下一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 1}"
-                               th:href="@{'getVideoListByUser?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
+                               th:href="@{'getShopListByUser?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 2}"
-                               th:href="@{'getVideoListByHeat?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
+                               th:href="@{'getShopListByHeat?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
                             <a class="ui button basic mini teal" th:if="${type == 3}"
-                               th:href="@{'getVideoListBySystem?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
+                               th:href="@{'getShopListBySystem?pageNum='+${pageInfo.pageNum+1}}">下一页</a>
                         </div>
                     </div>
                 </div>
@@ -154,16 +141,16 @@
                     </div>
                     <div class="ui teal segment">
                         <a target="_blank" class="ui basic teal left pointing label item m-margin-tb-tiny"
-                           href="getVideoListByUser">
-                            <span>最新视频</span>
+                           href="getShopListByUser">
+                            <span>新上架商品</span>
                         </a>
                         <a target="_blank" class="ui basic teal left pointing label item m-margin-tb-tiny"
-                           href="getVideoListByHeat">
-                            <span>最热视频</span>
+                           href="getShopListByHeat">
+                            <span>热门商品</span>
                         </a>
                         <a target="_blank" class="ui basic teal left pointing label item m-margin-tb-tiny"
-                           href="getVideoListBySystem">
-                            <span>系统推送</span>
+                           href="getShopListBySystem">
+                            <span>推荐商品</span>
                         </a>
                     </div>
                 </div>
@@ -209,5 +196,5 @@
         </footer>
 </body>
 <script type="text/javascript" th:src="@{/js/axios.js}"></script>
-<script type="text/javascript" th:src="@{/js/videoIndex.js}"></script>
+<script type="text/javascript" th:src="@{/js/shopIndex.js}"></script>
 </html>

@@ -33,4 +33,8 @@ public interface ShopMapper {
     void addTypeByTypeName(ShopType typeName);
 
     int deleteShopById(Integer id);
+
+    ShopType getTypeByTypeId(Integer typeId);
+
+    void addShopVv(Integer id);
 }

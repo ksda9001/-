@@ -40,7 +40,6 @@ public class VideoController {
         model.addAttribute("time", video.getUploadTime());
         model.addAttribute("vv", video.getVv());
         model.addAttribute("download",video.getDownload());
-        model.addAttribute("pic", video.getPictureUrl());
         model.addAttribute("pictureUrl", video.getPictureUrl());
         model.addAttribute("property", video.getProperty());
         model.addAttribute("isReprint", video.getIsReprint());
@@ -120,7 +119,8 @@ public class VideoController {
     @GetMapping(value = "/getVideoListByType")
     public String getVideoListByType(String value, @RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
         Integer typeId = videoService.selectTypeIdByName(value);
-        PageHelper.startPage(num, 5);
+        //开启PageHelper全部查询
+        PageHelper.startPage(1, 0);
         PageHelper.orderBy("uploadTime desc");
         List<Video> videoList = videoService.getVideoListByType(typeId);
 

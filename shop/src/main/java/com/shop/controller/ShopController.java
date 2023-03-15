@@ -1,9 +1,7 @@
 package com.shop.controller;
 
 import com.commons.entity.Shop;
-import com.commons.entity.Shop;
 import com.commons.entity.ShopType;
-import com.commons.entity.Video;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shop.service.ShopService;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -37,7 +34,7 @@ public class ShopController {
         shop.setTypeId(typeId);
         //商品描述
         shop.setContent(content);
-        //视频封面
+        //商品封面
         shop.setPictureUrl(pictureUrl);
         //留言
         shop.setIsComment(isComment);
@@ -47,26 +44,16 @@ public class ShopController {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         shop.setDate(timestamp);
         boolean result = shopService.addShop(shop);
-        if (state == 1) {
-            //返回处理消息
-            if (result) {
-                model.addAttribute("message", "发布成功！");
-            } else {
-                model.addAttribute("message", "发布失败！");
-            }
-        }
-        if (state == 0) {
-            //返回处理消息
-            if (result) {
-                model.addAttribute("message", "保存成功！");
-            } else {
-                model.addAttribute("message", "保存失败！");
-            }
+        //返回处理消息
+        if (result) {
+            model.addAttribute("message", "发布成功！");
+        } else {
+            model.addAttribute("message", "发布失败！");
         }
         return "tip";
     }
 
-    //获取最新视频
+    //获取最新商品
     @GetMapping("/getShopListByUser")
     public String getShopListByUser(@RequestParam(value = "pageNum", defaultValue = "1") Integer num, Model model) {
         PageHelper.startPage(num, 5);
@@ -80,7 +67,7 @@ public class ShopController {
         return "shopIndex";
     }
 
-    //最热视频
+    //最热商品
     @GetMapping(value = "/getShopListByHeat")
     public String getShopListByHeat(@RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
         PageHelper.startPage(num, 5);
@@ -95,7 +82,7 @@ public class ShopController {
         return "shopIndex";
     }
 
-    //推荐视频
+    //推荐商品
     @GetMapping(value = "/getShopListBySystem")
     public String getShopListBySystem(@RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
         PageHelper.startPage(num, 5);
@@ -129,7 +116,8 @@ public class ShopController {
     @GetMapping(value = "/getShopListByType")
     public String getShopListByType(String value, @RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
         Integer typeId = shopService.selectTypeIdByName(value);
-        PageHelper.startPage(num, 5);
+        //开启PageHelper全部查询
+        PageHelper.startPage(1, 0);
         PageHelper.orderBy("date desc");
         List<Shop> shopList = shopService.getShopListByType(typeId);
 

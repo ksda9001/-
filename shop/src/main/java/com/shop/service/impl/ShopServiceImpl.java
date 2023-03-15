@@ -79,4 +79,14 @@ public class ShopServiceImpl implements ShopService {
     public int deleteShopById(Integer id) {
         return shopMapper.deleteShopById(id);
     }
+
+    @Override
+    public ShopType getTypeByTypeId(Integer typeId) {
+        return shopMapper.getTypeByTypeId(typeId);
+    }
+
+    @Override
+    public void addShopVv(Integer id) {
+        shopMapper.addShopVv(id);
+    }
 }

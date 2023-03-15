@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/blog/lib/prism/prism.css}">
     <link rel="stylesheet" th:href="@{/blog/lib/tocbot/tocbot.css}">
     <script th:src="@{/artplayer/artplayer.js}"></script>
-    <title>视频播放</title>
+    <title th:text="${title}"></title>
     <style>
         .artplayer-app {
             height: 500px;
@@ -33,9 +33,9 @@
             <a href="/getVideoListByUser" class="m-item item m-mobile-hide"><i class="video icon"></i>视频</a>
             <a href="http://127.0.0.1:8080/about" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
             <div class="m-item right item  m-mobile-hide">
-                <form action="/search" method="get">
+                <form th:action="@{getVideoByName}" method="get">
                     <div class="ui action input inverted transparent ">
-                        <input type="text" name="title" placeholder="search...">
+                        <input type="text" name="title" placeholder="请输入视频名关键字...">
                         <button class="ui icon button" type="submit">
                             <i class="search icon"></i>
                         </button>
@@ -98,7 +98,7 @@
             <div id="content" class="typo typo-selection m-padded-lr-responsive m-text-lined js-toc-content">
                 <input id="title" hidden="hidden" th:value="${title}">
                 <input id="path" hidden="hidden" th:value="${path}">
-                <input id="pic" hidden="hidden" th:value="${pic}">
+                <input id="pic" hidden="hidden" th:value="${pictureUrl}">
                 <div class="artplayer-app"></div>
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -210,7 +210,6 @@
 <div class="ui vertical icon buttons  m-fixed m-padded m-right-bottom">
 
     <div id="toTop-button" class="ui icon button "><i class="ui chevron up icon"></i></div>
-    <button id="menuButton" type="button" class="ui button teal">目录</button>
     <a href="#comment-container" class="ui button teal">留言</a>
 
 </div>

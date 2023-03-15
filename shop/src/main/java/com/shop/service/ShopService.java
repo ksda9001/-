@@ -32,4 +32,8 @@ public interface ShopService {
     void addTypeByTypeName(ShopType shopType1);
 
     int deleteShopById(Integer id);
+
+    ShopType getTypeByTypeId(Integer typeId);
+
+    void addShopVv(Integer id);
 }
