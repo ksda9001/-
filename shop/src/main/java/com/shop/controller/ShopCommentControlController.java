@@ -46,7 +46,6 @@ public class ShopCommentControlController {
         map.put("begin", 0);
         map.put("size", 3);
         map.put("isRecommend", 1);
-//        mv.addObject("newBlogs", blogService.findBlogByConditionVisible(map));
         return mv;
     }
 

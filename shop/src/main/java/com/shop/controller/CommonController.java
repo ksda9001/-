@@ -1,6 +1,9 @@
 package com.shop.controller;
 
+import com.commons.entity.ShopType;
 import com.commons.entity.Users;
+import com.commons.entity.VideoType;
+import com.shop.service.ShopService;
 import com.shop.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 //Get请求的传统类型映射
 //TODO 待整合
 @Controller
 public class CommonController {
     @Autowired
     UserService userService;
+    @Autowired
+    ShopService shopService;
 
     @GetMapping({"/login"})
     public String login() {
@@ -57,4 +64,11 @@ public class CommonController {
     }
     @GetMapping(value = "/toAddVideoTypeList")
     public String toAddVideoTypeList() { return "shopControl/shopTypeAdd"; }
+
+    @GetMapping("/ShopUpload")
+    public String videoUpload(Model model){
+        List<ShopType> shopTypeList = shopService.getOneType();
+        model.addAttribute("types",shopTypeList);
+        return "shopControl/shopUpload";
+    }
 }

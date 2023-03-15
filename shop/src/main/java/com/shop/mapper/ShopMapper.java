@@ -2,31 +2,33 @@ package com.shop.mapper;
 
 import com.commons.entity.Shop;
 import com.commons.entity.ShopType;
-import com.commons.entity.VideoType;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface ShopMapper {
-    ShopType getTypeByTypeName(String typeName);
-
-    void addTypeByTypeName(ShopType typeName);
-
-    List<Shop> getShopByName(String title);
-
-    Shop getShopById(Integer id);
-
     Integer selectTypeIdByName(String type);
 
-    int addShop(Shop shop);
+    boolean addShop(Shop shop);
 
-    int deleteShopById(Integer id);
+    List<Shop> getShopListByHeat();
 
-    int updateShop(Shop shop);
+    List<Shop> getShopList();
 
     List<ShopType> getOneType();
 
-    List<Shop> findShopByCondition(Map<String, Object> map);
+    List<Shop> getShopListBySystem();
+
+    List<Shop> getShopByName(String title);
+
+    List<Shop> getShopListByType(Integer typeId);
+
+    Shop getShopById(Integer id);
+
+    boolean addShopPushById(Shop shop);
+
+    ShopType getTypeByTypeName(String type);
+
+    void addTypeByTypeName(ShopType shopType1);
 }
