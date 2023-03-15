@@ -25,12 +25,6 @@
                 #{uploadTime}, #{typeId})
     </insert>
 
-    <update id="addVideoClickNum">
-        UPDATE video_click
-        SET num = num + 1
-        WHERE videoId = #{videoId}
-    </update>
-
     <update id="addVideoPushById">
         UPDATE video
         SET push     = #{push},

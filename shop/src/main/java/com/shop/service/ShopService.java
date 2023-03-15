@@ -1,33 +1,33 @@
 package com.shop.service;
 
-import com.commons.entity.Blog;
 import com.commons.entity.Shop;
 import com.commons.entity.ShopType;
-import com.commons.entity.VideoType;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ShopService {
-    ShopType getTypeBySTypeName(String type);
-
-    void addTypeByTypeName(ShopType shopType1);
-
-    List<Shop> getShopByName(String title);
-
-    Shop getShopById(Integer id);
 
     Integer selectTypeIdByName(String type);
 
-    int addShop(Shop shop);
+    boolean addShop(Shop shop);
 
-    int deleteShop(Integer id);
+    List<Shop> getShopListByHeat();
 
-    int updateShop(Shop shop);
-
-    Shop findShopById(Integer id);
+    List<Shop> getShopList();
 
     List<ShopType> getOneType();
 
-    List<Shop> findShopByConditionVisible(Map<String, Object> map);
+    List<Shop> getShopListBySystem();
+
+    List<Shop> getShopByName(String title);
+
+    List<Shop> getShopListByType(Integer typeId);
+
+    Shop getShopById(Integer id);
+
+    boolean addShopPushById(Shop shop);
+
+    ShopType getTypeByTypeName(String type);
+
+    void addTypeByTypeName(ShopType shopType1);
 }

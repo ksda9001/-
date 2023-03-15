@@ -8,10 +8,6 @@
         <version>1.0</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <!-- 坐标 ID -->
-    <artifactId>shop</artifactId>
-
     <properties>
         <shiro.version>1.9.0</shiro.version>
     </properties>
@@ -30,4 +26,8 @@
             <version>${shiro.version}</version>
         </dependency>
     </dependencies>
+
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 坐标 ID -->
+    <artifactId>shop</artifactId>
 </project>

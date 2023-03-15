@@ -15,7 +15,7 @@ public class TypeController {
     @PostMapping(value = "/shopAddType")
     public String videoAddType(String type, ModelMap model) {
         if (type != null) {
-            ShopType shopType = shopService.getTypeBySTypeName(type);
+            ShopType shopType = shopService.getTypeByTypeName(type);
             if (shopType == null) {
                 ShopType shopType1 = new ShopType();
                 shopType1.setTypeName(type);
