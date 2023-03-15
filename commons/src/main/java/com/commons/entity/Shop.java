@@ -45,7 +45,7 @@ public class Shop implements Serializable {
     /**
      * 标签
      */
-    private String typeId;
+    private int typeId;
 
     /**
      * 评论

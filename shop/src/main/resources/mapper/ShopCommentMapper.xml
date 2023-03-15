@@ -2,13 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- comment -->
-<mapper namespace="com.video.mapper.VideoCommentMapper">
-    <!-- 字段映射 -->
-    <resultMap id="videoCommentMap" type="com.commons.entity.VideoComment">
+<mapper namespace="com.shop.mapper.ShopCommentMapper">
+    <resultMap id="shopCommentMap" type="com.commons.entity.ShopComment">
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
-        <result column="video" property="video" jdbcType="INTEGER" />
+        <result column="shop" property="shop" jdbcType="INTEGER" />
         <result column="time" property="time" jdbcType="TIMESTAMP" />
         <result column="isAdmin" property="isAdmin" jdbcType="INTEGER" />
         <result column="content" property="content" jdbcType="VARCHAR"/>
@@ -17,22 +16,22 @@
 
     <!-- 表查询字段 -->
     <sql id="allColumns">
-        c.id, c.name, c.email, c.video, c.time, c.isAdmin,c.content,c.parent
+        c.id, c.name, c.email, c.shop, c.time, c.isAdmin,c.content,c.parent
     </sql>
 
     <!-- 根据条件参数查询数据列表 -->
-    <select id="findVideoCommentByPage" resultMap="videoCommentMap" parameterType="map">
+    <select id="findShopCommentByPage" resultMap="shopCommentMap" parameterType="map">
         SELECT
         <include refid="allColumns" />
-        FROM video_comment c WHERE 1 = 1
+        FROM shop_comment c WHERE 1 = 1
         <if test="name != null and name != ''">
             AND c.name = #{name}
         </if>
         <if test="email != null and email != ''">
             AND c.email = #{email}
         </if>
-        <if test="video != null">
-            AND c.video = #{video}
+        <if test="shop != null">
+            AND c.shop = #{video}
         </if>
         <if test="time != null">
             AND c.time = #{time}
@@ -48,43 +47,43 @@
     </select>
 
     <!-- 根据主键查询数据 -->
-    <select id="findVideoCommentById" resultMap="videoCommentMap" parameterType="integer">
+    <select id="findShopCommentById" resultMap="shopCommentMap" parameterType="integer">
         SELECT
         <include refid="allColumns" />
-        FROM video_comment c WHERE c.id =#{id}
+        FROM shop_comment c WHERE c.id =#{id}
     </select>
 
-    <select id="findPVideoCommentByVideoId" resultMap="videoCommentMap" parameterType="integer">
+    <select id="findPShopCommentByShopId" resultMap="shopCommentMap" parameterType="integer">
         SELECT
         <include refid="allColumns" />
-        FROM video_comment c WHERE c.video =#{video} and c.parent=-1
+        FROM shop_comment c WHERE c.shop =#{shop} and c.parent=-1
     </select>
 
-    <select id="findSVideoCommentByVideoId" resultMap="videoCommentMap" parameterType="integer">
+    <select id="findSShopCommentByShopId" resultMap="shopCommentMap" parameterType="integer">
         SELECT
         <include refid="allColumns" />
-        FROM video_comment c WHERE c.video =#{video} and c.parent !=-1
+        FROM shop_comment c WHERE c.shop =#{shop} and c.parent !=-1
     </select>
 
     <!-- 插入数据 -->
-    <insert id="insertVideoComment" parameterType="com.commons.entity.VideoComment">
-        INSERT INTO video_comment (
-            id, name, email, video, time, isAdmin,content,parent
+    <insert id="insertShopComment" parameterType="com.commons.entity.ShopComment">
+        INSERT INTO shop_comment (
+            id, name, email, shop, time, isAdmin, content, parent
         ) VALUES (
-            #{id},
-            #{name},
-            #{email},
-            #{video},
-            #{time},
-            #{isAdmin},
-            #{content},
-            #{parent}
-        )
+                     #{id},
+                     #{name},
+                     #{email},
+                     #{shop},
+                     #{time},
+                     #{isAdmin},
+                     #{content},
+                     #{parent}
+                 )
     </insert>
 
     <!-- 修改数据 -->
-    <update id="updateVideoComment" parameterType="com.commons.entity.VideoComment">
-        UPDATE video_comment
+    <update id="updateShopComment" parameterType="com.commons.entity.ShopComment">
+        UPDATE shop_comment
         <set>
             <if test="name != null">
                 name = #{name},
@@ -92,8 +91,8 @@
             <if test="email != null">
                 email = #{email},
             </if>
-            <if test="video != null">
-                video = #{video},
+            <if test="shop != null">
+                shop = #{shop},
             </if>
             <if test="time != null">
                 time = #{time},
@@ -112,15 +111,7 @@
     </update>
 
     <!-- 根据主键删除数据 -->
-    <delete id="deleteVideoCommentById" parameterType="int">
-        DELETE FROM video_comment WHERE id = #{id}
-    </delete>
-
-    <!-- 根据主键批量删除数据 -->
-    <delete id="deleteVideoCommentByIds" parameterType="list">
-        DELETE FROM video_comment WHERE id IN
-        <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+    <delete id="deleteShopCommentById" parameterType="int">
+        DELETE FROM shop_comment WHERE id = #{id}
     </delete>
 </mapper>

@@ -39,6 +39,7 @@ public class VideoController {
         model.addAttribute("path", video.getPath());
         model.addAttribute("time", video.getUploadTime());
         model.addAttribute("vv", video.getVv());
+        model.addAttribute("download",video.getDownload());
         model.addAttribute("pic", video.getPictureUrl());
         model.addAttribute("pictureUrl", video.getPictureUrl());
         model.addAttribute("property", video.getProperty());

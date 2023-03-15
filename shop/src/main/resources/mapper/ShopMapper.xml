@@ -14,18 +14,144 @@
         <result property="isComment" column="isComment"/>
         <result property="isRecommend" column="isRecommend"/>
     </resultMap>
+
     <resultMap id="ShopType" type="com.commons.entity.ShopType">
         <id property="id" column="id"/>
         <result property="typeName" column="typeName"/>
     </resultMap>
+
     <insert id="addTypeByTypeName">
         INSERT INTO shop_type (typeName)
         VALUES (#{typeName})
     </insert>
+
+    <insert id="addShop">
+        INSERT INTO shop (
+            id, cost, title, content, date, typeId, pictureUrl, isComment, state, isRecommend, views
+        ) VALUES (
+                     #{id},
+                     #{cost},
+                     #{title},
+                     #{content},
+                     #{date},
+                     #{typeId},
+                     #{pictureUrl},
+                     #{isComment},
+                     #{state},
+                     #{isRecommend},
+                     #{views}
+                 )
+    </insert>
+
+    <update id="updateShop" parameterType="com.commons.entity.Shop">
+        UPDATE shop
+        <set>
+            <if test="cost != null">
+                cost = #{cost},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="date != null">
+                date = #{date},
+            </if>
+            <if test="typeId != null">
+                typeId = #{typeId},
+            </if>
+            <if test="views != null">
+                views = #{views},
+            </if>
+            <if test="pictureUrl != null">
+                pictureUrl = #{pictureUrl},
+            </if>
+            <if test="isRecommend != null">
+                isRecommend = #{isRecommend},
+            </if>
+            <if test="isComment != null">
+                isComment = #{isComment},
+            </if>
+            <if test="state != null">
+                state = #{state}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteShopById">
+        DELETE FROM shop WHERE id = #{id}
+    </delete>
+
     <select id="getTypeByTypeName" resultType="com.commons.entity.ShopType">
         SELECT *
         FROM shop_type
         WHERE typeName = #{typeName}
+    </select>
+
+    <select id="getShopByName" resultType="com.commons.entity.Shop">
+        SELECT *
+        FROM shop
+        WHERE title LIKE '%${_parameter}%'
+    </select>
+
+    <select id="getShopById" resultType="com.commons.entity.Shop">
+        SELECT *
+        FROM shop
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectTypeIdByName" resultType="java.lang.Integer">
+        SELECT id
+        FROM shop_type
+        WHERE typeName = #{type}
+    </select>
+
+    <select id="getOneType" resultType="com.commons.entity.ShopType">
+        SELECT *
+        FROM shop_type
+    </select>
+
+    <select id="findShopByCondition" resultType="com.commons.entity.Shop">
+        SELECT
+        *
+        FROM shop s
+        WHERE 1 = 1
+        <if test="title != null and title != ''">
+            AND s.title LIKE CONCAT('%', #{title}, '%')
+        </if>
+        <if test="cost != null and cost != ''">
+            AND s.cost LIKE CONCAT('%', #{summary}, '%')
+        </if>
+        <if test="content != null and content != ''">
+            AND s.content LIKE CONCAT('%', #{content}, '%')
+        </if>
+        <if test="date != null and date != ''">
+            AND s.date = #{date}
+        </if>
+        <if test="typeId != null and typeId != 0">
+            AND s.typeId = #{typeId}
+        </if>
+        <if test="views != null and views != ''">
+            AND s.views = #{views}
+        </if>
+        <if test="pictureUrl != null and pictureUrl != ''">
+            AND s.pictureUrl LIKE CONCAT('%', #{pictureUrl}, '%')
+        </if>
+        <if test="isRecommend != null and isRecommend != ''">
+            AND s.isRecommend = #{isRecommend}
+        </if>
+        <if test="isComment != null and isComment != ''">
+            AND s.isComment = #{isComment}
+        </if>
+        <if test="state != null and state != ''">
+            AND s.state = #{state}
+        </if>
+        ORDER by s.date desc
+        <if test="begin != null and size != null">
+            LIMIT #{begin},#{size}
+        </if>
     </select>
 
 
