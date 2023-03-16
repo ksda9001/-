@@ -16,4 +16,8 @@ public interface OrderService {
     Double getOrderPriceByNo(String x);
 
     Integer getUserIdByNo(String x);
+
+    void setFinish(String ordersNo);
+
+    void delAllFinish();
 }

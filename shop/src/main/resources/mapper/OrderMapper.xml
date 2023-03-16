@@ -27,6 +27,12 @@
                 #{ordersState}, #{ordersNum}, #{ordersImg})
     </insert>
 
+    <update id="setFinish">
+        UPDATE shop_orders
+        SET ordersState = "已付款"
+        WHERE ordersNo = #{ordersNo}
+    </update>
+
     <delete id="cargoDel">
         DELETE
         FROM shop_orders
@@ -39,6 +45,12 @@
         <foreach collection="arg0" item="Nos" separator=" , " open=" ordersNo in ( " close=" ) ">
             #{Nos}
         </foreach>
+    </delete>
+
+    <delete id="delAllFinish">
+        DELETE FROM shop_orders
+        WHERE
+        ordersState = "已付款"
     </delete>
 
     <select id="getOrderListByUserId" resultType="com.commons.entity.Orders">

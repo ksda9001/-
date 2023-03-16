@@ -67,10 +67,10 @@ public class CargoController {
     }
 
     //单条删除
-    @DeleteMapping("/cargoDel/{id}")
+    @DeleteMapping("/cargoDel/{ordersNo}")
     @ResponseBody
-    public ResponseData<String> cargoDel(@PathVariable String id) {
-        int test = orderService.cargoDel(id);
+    public ResponseData<String> cargoDel(@PathVariable String ordersNo) {
+        int test = orderService.cargoDel(ordersNo);
         if (test > 0) {
             return new ResponseData<>(200, "删除成功！", null);
         } else {
@@ -81,7 +81,7 @@ public class CargoController {
     //批量删除
     @DeleteMapping("/cargoMutilDel")
     @ResponseBody
-    public ResponseData<String> mutilDel(@RequestParam String ordersNo) {
+    public ResponseData<String> cargoMutilDel(@RequestParam String ordersNo) {
         //Some Magic.
         String[] NOS = ordersNo.split(",");
         List<String> noList = Arrays.asList(NOS);
@@ -104,6 +104,7 @@ public class CargoController {
         for (String number:noList){
             Double price = orderService.getOrderPriceByNo(number);
             userId = orderService.getUserIdByNo(number);
+            orderService.setFinish(number);
             priceTotal += price;
         }
         Users user = (Users) session.getAttribute("user");
@@ -130,6 +131,7 @@ public class CargoController {
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         //请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();
+        orderService.delAllFinish();
         return result;
     }
 

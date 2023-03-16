@@ -43,4 +43,14 @@ public class OrderServiceImpl implements OrderService {
     public Integer getUserIdByNo(String x) {
         return orderMapper.getUserIdByNo(x);
     }
+
+    @Override
+    public void setFinish(String ordersNo) {
+        orderMapper.setFinish(ordersNo);
+    }
+
+    @Override
+    public void delAllFinish() {
+        orderMapper.delAllFinish();
+    }
 }

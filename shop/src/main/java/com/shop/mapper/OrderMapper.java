@@ -18,4 +18,8 @@ public interface OrderMapper {
     Double getOrderPriceByNo(Integer ordersNo);
 
     Integer getUserIdByNo(String x);
+
+    void setFinish(String ordersNo);
+
+    void delAllFinish();
 }
