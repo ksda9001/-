@@ -33,7 +33,7 @@ function pre() {
 
 function loadData(){
     $.ajax({
-        url:"/commentCombination",
+        url:"/ShopCommentCombination",
         data:{"begin":begin,"size":size,blog:$("[name='blog']").val()},
         type:"get",
         success:function (result) {
@@ -43,7 +43,7 @@ function loadData(){
 }
 function deleteComment(button) {
     $.ajax({
-        url: "/comment",
+        url: "/shopComment",
         data:{"id":$(button).attr("data-id")},
         type:"delete",
 

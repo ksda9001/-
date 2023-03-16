@@ -51,11 +51,6 @@ public class CommonController {
         return "control/login";
     }
 
-    @GetMapping("/error")
-    public String error() {
-        return "error";
-    }
-
     @GetMapping("/editUser")
     public String editUser(Model model, String userID) {
         Users user = userService.selectUserByID(userID);

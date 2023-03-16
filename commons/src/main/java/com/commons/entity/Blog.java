@@ -73,11 +73,6 @@ public class Blog implements Serializable {
     private Integer isReprint = 0;
 
     /**
-     * 是否开启赞赏
-     */
-    private Integer isAppreciation = 0;
-
-    /**
      * 是否开启评论
      */
     private Integer isComment = 0;

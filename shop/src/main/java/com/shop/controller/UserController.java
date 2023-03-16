@@ -8,7 +8,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,11 +62,16 @@ public class UserController {
             user.setSalt(null);
             httpServletRequest.getSession().setAttribute("user", userEntity);
             if (userEntity.getRole().equals("user")) {
-                return "control/index";
+                return "redirect:/shift";
             }
-            return "adminIndex";
+            return "control/index";
         }
         model.addAttribute("loginmsg", "用户名或密码错误");
         return "control/login";
+    }
+
+    @GetMapping("/shift")
+    public ModelAndView shift(){
+        return new ModelAndView("redirect:http://127.0.0.1:8080");
     }
 }

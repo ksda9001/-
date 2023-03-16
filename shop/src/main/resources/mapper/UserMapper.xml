@@ -29,14 +29,15 @@
     <!--    编辑用户状态-->
     <update id="EditUser">
         UPDATE user
-        SET userName   = #{userName},
-            userSex    = #{userSex},
-            password   =#{password},
-            salt       = #{salt},
-            role       =#{role},
-            userStatus =#{userStatus},
-            userPhone  = #{userPhone},
-            userEmail  =#{userEmail}
+        SET userName    =#{userName},
+            userSex     =#{userSex},
+            password    =#{password},
+            salt        =#{salt},
+            role        =#{role},
+            userStatus  =#{userStatus},
+            userPhone   =#{userPhone},
+            userEmail   =#{userEmail},
+            userAddress =#{userAddress}
         WHERE userID = #{userID}
     </update>
 
@@ -53,8 +54,9 @@
     </select>
     <!--    TODO 部分参数暂时未添加-->
     <insert id="addUser" parameterType="com.commons.entity.Users" keyColumn="userID" useGeneratedKeys="true">
-        INSERT INTO user (userID, userName, userSex, password, salt, role, userStatus, userPhone, userEmail)
-        VALUES (#{userID}, #{userName}, #{userSex}, #{password}, #{salt}, #{role}, #{userStatus}, #{userPhone},
-                #{userEmail})
+        INSERT INTO user (userName, userSex, password, salt, role, userStatus, userPhone, userEmail,
+                          userAddress)
+        VALUES (#{userName}, #{userSex}, #{password}, #{salt}, #{role}, #{userStatus}, #{userPhone},
+                #{userEmail}, #{userAddress})
     </insert>
 </mapper>

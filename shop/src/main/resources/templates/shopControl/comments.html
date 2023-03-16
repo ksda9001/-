@@ -70,7 +70,7 @@
           <td th:text="${comment.getContent()}"></td>
           <td th:text="${#dates.format(comment.getTime(),'yyyy-MM-dd HH:mm')}"></td>
           <td>
-            <a class="ui button  teal basic mini " th:href="'/control/comments-details/'+${comment.getId()}">详情</a>
+            <a class="ui button  teal basic mini " th:href="'/shopControl/comments-details/'+${comment.getId()}">详情</a>
             <a class="ui button  red basic mini " th:attr="data-id=${comment.getId()}"
                onclick="deleteComment(this)">删除</a>
           </td>

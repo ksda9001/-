@@ -248,13 +248,6 @@ public class PageController {
         return getModelAndView(mv);
     }
 
-    @GetMapping("/about")
-    public ModelAndView about() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("main/about");
-        return getModelAndView(mv);
-    }
-
     @GetMapping("/page_types")
     public ModelAndView page_types(@RequestParam Map<String, Object> map) {
         ModelAndView mv = new ModelAndView();

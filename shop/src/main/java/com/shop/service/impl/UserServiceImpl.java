@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean register(Users user, String sw) {
         //后端校验
-        //确保 姓名，密码，电话，邮箱已输入
-        if (StringUtils.isEmpty(user.getPassword()) || StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getUserEmail()) || StringUtils.isEmpty(user.getUserPhone())) {
+        //确保 姓名，密码，电话，邮箱，地址已输入
+        if (StringUtils.isEmpty(user.getPassword()) || StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getUserEmail()) || StringUtils.isEmpty(user.getUserPhone()) || StringUtils.isEmpty(user.getUserAddress())) {
             return false;
         }
         //防止用户名重复

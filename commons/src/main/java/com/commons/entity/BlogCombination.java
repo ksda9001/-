@@ -76,10 +76,6 @@ public class BlogCombination implements Serializable {
      */
     private Integer isReprint = 0;
 
-    /**
-     * 是否开启赞赏
-     */
-    private Integer isAppreciation = 0;
 
     /**
      * 是否开启评论
@@ -109,7 +105,6 @@ public class BlogCombination implements Serializable {
         this.pictureUrl = blog.getPictureUrl();
         this.isRecommend = blog.getIsRecommend();
         this.isReprint = blog.getIsReprint();
-        this.isAppreciation = blog.getIsAppreciation();
         this.isComment = blog.getIsComment();
         this.property = blog.getProperty();
         this.state = blog.getState();
@@ -127,7 +122,6 @@ public class BlogCombination implements Serializable {
         this.pictureUrl = blog.getPictureUrl();
         this.isRecommend = blog.getIsRecommend();
         this.isReprint = blog.getIsReprint();
-        this.isAppreciation = blog.getIsAppreciation();
         this.isComment = blog.getIsComment();
         this.property = blog.getProperty();
         this.state = blog.getState();
@@ -144,7 +138,6 @@ public class BlogCombination implements Serializable {
         this.pictureUrl = blog.getPictureUrl();
         this.isRecommend = blog.getIsRecommend();
         this.isReprint = blog.getIsReprint();
-        this.isAppreciation = blog.getIsAppreciation();
         this.isComment = blog.getIsComment();
         this.property = blog.getProperty();
         this.state = blog.getState();
@@ -165,7 +158,6 @@ public class BlogCombination implements Serializable {
                 ", pictureUrl='" + pictureUrl + '\'' +
                 ", isRecommend=" + isRecommend +
                 ", isReprint=" + isReprint +
-                ", isAppreciation=" + isAppreciation +
                 ", isComment=" + isComment +
                 ", property=" + property +
                 ", state=" + state +
