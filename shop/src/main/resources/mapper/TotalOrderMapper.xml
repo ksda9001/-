@@ -10,7 +10,7 @@
         <result column="address" property="address"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, price, orderNo, userId
+        id, price, orderNo, userId, state, address
     </sql>
     <insert id="addTotalOrders" parameterType="com.commons.entity.TotalOrders">
         INSERT INTO shop_total_orders (price, orderNo, userId, state, address)

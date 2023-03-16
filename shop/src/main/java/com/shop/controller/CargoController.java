@@ -67,10 +67,10 @@ public class CargoController {
     }
 
     //单条删除
-    @DeleteMapping("/cargoDel/{ordersNo}")
+    @DeleteMapping("/cargoDel/{id}")
     @ResponseBody
-    public ResponseData<String> cargoDel(@PathVariable String ordersNo) {
-        int test = orderService.cargoDel(ordersNo);
+    public ResponseData<String> cargoDel(@PathVariable String id) {
+        int test = orderService.cargoDel(id);
         if (test > 0) {
             return new ResponseData<>(200, "删除成功！", null);
         } else {
@@ -79,7 +79,7 @@ public class CargoController {
     }
 
     //批量删除
-    @DeleteMapping("/mutilDel")
+    @DeleteMapping("/cargoMutilDel")
     @ResponseBody
     public ResponseData<String> mutilDel(@RequestParam String ordersNo) {
         //Some Magic.
@@ -110,7 +110,7 @@ public class CargoController {
         TotalOrders totalOrders = new TotalOrders();
         totalOrders.setOrderNo(UUID.randomUUID().toString().replace("-" , ""));
         totalOrders.setPrice(priceTotal);
-        totalOrders.setId(userId);
+        totalOrders.setUserId(userId);
         totalOrders.setState("待付款");
         totalOrders.setAddress(user.getUserAddress());
         totalOrderService.addTotalOrders(totalOrders);

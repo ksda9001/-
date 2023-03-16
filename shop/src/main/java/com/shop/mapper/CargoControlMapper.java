@@ -1,17 +1,13 @@
-package com.shop.service;
+package com.shop.mapper;
 
 import com.commons.entity.TotalOrders;
-import com.commons.entity.Users;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
-public interface TotalOrderService {
-
-    void addTotalOrders(TotalOrders totalOrders);
-
-    void updateOrderStateToPaySuccess(String orderNo);
-
+@Mapper
+public interface CargoControlMapper {
     List<TotalOrders> selectNSearch(Map<String, Object> search);
 
     int mutilcargoControlFin(List<String> noList);

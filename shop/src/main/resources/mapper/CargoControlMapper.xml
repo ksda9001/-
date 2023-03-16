@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CargoControlMapper">
+    <resultMap id="BaseResultMap" type="com.commons.entity.TotalOrders">
+        <id column="id" property="id"/>
+        <result column="price" property="price"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="userId" property="userId"/>
+        <result column="state" property="state"/>
+        <result column="address" property="address"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, price, orderNo, userId
+    </sql>
+    <update id="mutilcargoControlFin">
+        UPDATE shop_total_orders SET
+        state = "待发货！"
+        WHERE
+        <foreach collection="arg0" item="noList" separator=" , " open=" id in ( " close=" ) ">
+            #{noList}
+        </foreach>
+    </update>
+
+    <update id="cargoControlFin">
+        UPDATE shop_total_orders SET
+        state = "待发货！"
+        WHERE id = #{id}
+    </update>
+
+    <delete id="cargoControlDel">
+        DELETE
+        FROM shop_total_orders
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="mutilcargoControlDel">
+        DELETE FROM shop_total_orders
+        WHERE
+        <foreach collection="arg0" item="noList" separator=" , " open=" id in ( " close=" ) ">
+            #{noList}
+        </foreach>
+    </delete>
+
+    <select id="selectNSearch" resultType="com.commons.entity.TotalOrders">
+        SELECT *
+        FROM shop_total_orders
+        WHERE 1 = 1
+          AND (id LIKE '%${keywords}' OR
+               price LIKE '%${keywords}' OR
+               orderNo LIKE '%${keywords}' OR
+               userId LIKE '%${keywords}' OR
+               state LIKE '%${keywords}' OR
+               address LIKE '%${keywords}')
+    </select>
+
+
+</mapper>
