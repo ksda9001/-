@@ -11,6 +11,8 @@
     <link rel="stylesheet" th:href="@{/blog/lib/prism/prism.css}">
     <link rel="stylesheet" th:href="@{/blog/lib/tocbot/tocbot.css}">
     <title th:text="${title}"></title>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/shopDetail.js}"></script>
 </head>
 <body>
 <!--导航-->
@@ -71,17 +73,31 @@
             </div>
             <div class="column">
                 <div class="field  m-margin-bottom-small m-mobile-wide ">
-                    <h2 class="ui header left aligned" th:text="${title}"></h2>
-                    <h3 style="color: #2d698c" class="ui header" th:text="'¥' + ${cost}"></h3>
-                    <a th:href="@{'orderGoodsById?id='+${id}}">
-                        <button class="ui button teal m-mobile-wide"><i
-                                class="ui cart arrow down icon"></i>加入购物车
-                        </button>
-                    </a>
-                    <a th:href="@{'buyGoodsById?id='+${id}}">
-                        <button class="ui button teal m-mobile-wide">购买
-                        </button>
-                    </a>
+                    <br>
+                    <div>
+                        <h2 class="ui header left aligned" th:text="${title}"></h2>
+                        <h3 style="color: #2d698c" class="ui header" th:text="'¥' + ${cost}"></h3>
+                    </div>
+                    <br>
+                    <div class="ui mini input focus" style="margin-top:10px;">
+                        <h3 class="ui header">数量</h3>
+                        &nbsp;&nbsp;&nbsp;
+                        <input id="min" class="mini ui button" type="button" value="-" />
+                        <input id="buynum" type="text" value="1" style="width:60px;" />
+                        <input id="add" class="mini ui button" type="button" value="+" />
+                    </div>
+                    <br><br><br><br>
+                    <div>
+                        <a onclick="buy();" href="javascript:void(0);">
+                            <button class="ui button teal m-mobile-wide"><i
+                                    class="ui cart arrow down icon"></i>加入购物车
+                            </button>
+                        </a>
+                        <a onclick="buy();" href="javascript:void(0);">
+                            <button class="ui button teal m-mobile-wide">购买
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
