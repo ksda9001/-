@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.TotalOrderMapper">
+    <resultMap id="BaseResultMap" type="com.commons.entity.TotalOrders">
+        <id column="id" property="id"/>
+        <result column="price" property="price"/>
+        <result column="orderNo" property="orderNo"/>
+        <result column="userId" property="userId"/>
+        <result column="state" property="state"/>
+        <result column="address" property="address"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, price, orderNo, userId
+    </sql>
+    <insert id="addTotalOrders" parameterType="com.commons.entity.TotalOrders">
+        INSERT INTO shop_total_orders (price, orderNo, userId, state, address)
+        VALUES (#{price},#{orderNo},#{userId},#{state},#{address})
+    </insert>
+
+    <update id="updateOrderStateToPaySuccess">
+        UPDATE shop_total_orders SET
+        state = "待发货！"
+        WHERE orderNo = #{orderNo}
+    </update>
+
+</mapper>

@@ -257,7 +257,6 @@ function mutil_del(t) {
     }
 }
 
-/*批量删除*/
 function mutil_buy(t) {
     var check = Check();
     // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
@@ -276,27 +275,20 @@ function mutil_buy(t) {
         }
         layer.confirm('确认要购买选中的' + num + '个商品吗？', function () {
             $.ajax({
-                type: "put",
-                dataType: "json",
+                type: "get",
+                dataType: "text",
                 url: $(t).attr("_href"),
                 data: ordersNo.serialize(),
                 async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
-                success: function (data) {
-                    if (data.code === 200) {
-                        layer.msg('已删除!', {icon: 6, time: 1000});
-                        //成功后定时刷新页面
-                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
-                    } else {
-                        layer.msg('删除失败!', {icon: 5, time: 1000});
-                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
-                    }
+                success: function (result) {
+                    $("#container").html(result);
                 }
             });
         });
     }
 }
 
-function topage(num){
-    // 获取当前路径 URL 然后为路径 url 拼接关键字参数并重新提交
-    window.location = window.location.pathname + "?pageNum=" + num;
-}
+// function topage(num){
+//     // 获取当前路径 URL 然后为路径 url 拼接关键字参数并重新提交
+//     window.location = window.location.pathname + "?pageNum=" + num;
+// }

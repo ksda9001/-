@@ -12,4 +12,8 @@ public interface OrderService {
     int cargoDel(String ordersNo);
 
     int mutilDelete(List<String> noList);
+
+    Double getOrderPriceByNo(String x);
+
+    Integer getUserIdByNo(String x);
 }

@@ -24,7 +24,7 @@
         VALUES (#{ordersId},
                 #{ordersTitle}, #{ordersTime},
                 #{ordersPrice}, #{ordersUser},
-                #{ordersState}, #{ordersNum}, #{ordersImg});
+                #{ordersState}, #{ordersNum}, #{ordersImg})
     </insert>
 
     <delete id="cargoDel">
@@ -45,5 +45,17 @@
         SELECT *
         FROM shop_orders
         WHERE ordersUser = #{ordersUser}
+    </select>
+
+    <select id="getOrderPriceByNo" resultType="java.lang.Double">
+        SELECT ordersPrice
+        FROM shop_orders
+        WHERE ordersNo = #{ordersNo}
+    </select>
+
+    <select id="getUserIdByNo" resultType="java.lang.Integer">
+        SELECT ordersUser
+        FROM shop_orders
+        WHERE ordersNo = #{ordersNo}
     </select>
 </mapper>

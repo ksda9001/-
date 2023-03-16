@@ -26,7 +26,7 @@
     <title>购物车</title>
 </head>
 <body>
-<div class="page-container">
+<div id="container" class="page-container">
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:void(0);"
                                                                th:attr="_href=@{/mutilDel}"
                                                                onclick="mutil_del(this)"
@@ -72,36 +72,36 @@
         </tbody>
     </table>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
-        <tr class="pagination">
-            <td><a href="javascript:void(0);" th:onclick="topage(1)"
-                   class="btn btn-primary-outline radius size-MINI">首页</a></td>
-            &nbsp;&nbsp;
-            <td th:class="${result.data.isFirstPage} ? 'disabled' : ''">
-                <a href="javascript:void(0);"
-                   th:onclick="${result.data.isFirstPage}? '' :|topage(${result.data.prePage})|"
-                   class="btn btn-primary-outline radius size-MINI">上一页</a>
-            </td>
-            &nbsp;&nbsp;
-            <td th:class="${result.data.isLastPage} ? 'disabled' : ''">
-                <a href="javascript:void(0);"
-                   th:onclick="${result.data.isLastPage} ? '' : |topage(${result.data.nextPage})|"
-                   class="btn btn-primary-outline radius size-MINI">下一页</a>
-            </td>
-            &nbsp;&nbsp;
-            <td><a href="javascript:void(0);" th:onclick="|topage(${result.data.pages})|"
-                   class="btn btn-primary-outline radius size-MINI">尾页</a></td>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <td> 当前第 [[${result.data.pageNum}]] 页，共 [[${result.data.pages}]] 页，共 [[${result.data.total}]]
-                条数据
-            </td>
-        </tr>
-        <span class="r"><a href="javascript:void(0);"
-                           th:attr="_href=@{/mutilBuy}"
+        <!--        分页与全选统计金额有冲突-->
+        <!--        <tr class="pagination">-->
+        <!--            <td><a href="javascript:void(0);" th:onclick="topage(1)"-->
+        <!--                   class="btn btn-primary-outline radius size-MINI">首页</a></td>-->
+        <!--            &nbsp;&nbsp;-->
+        <!--            <td th:class="${result.data.isFirstPage} ? 'disabled' : ''">-->
+        <!--                <a href="javascript:void(0);"-->
+        <!--                   th:onclick="${result.data.isFirstPage}? '' :|topage(${result.data.prePage})|"-->
+        <!--                   class="btn btn-primary-outline radius size-MINI">上一页</a>-->
+        <!--            </td>-->
+        <!--            &nbsp;&nbsp;-->
+        <!--            <td th:class="${result.data.isLastPage} ? 'disabled' : ''">-->
+        <!--                <a href="javascript:void(0);"-->
+        <!--                   th:onclick="${result.data.isLastPage} ? '' : |topage(${result.data.nextPage})|"-->
+        <!--                   class="btn btn-primary-outline radius size-MINI">下一页</a>-->
+        <!--            </td>-->
+        <!--            &nbsp;&nbsp;-->
+        <!--            <td><a href="javascript:void(0);" th:onclick="|topage(${result.data.pages})|"-->
+        <!--                   class="btn btn-primary-outline radius size-MINI">尾页</a></td>-->
+        <!--            &nbsp;&nbsp;&nbsp;&nbsp;-->
+        <!--            <td> 当前第 [[${result.data.pageNum}]] 页，共 [[${result.data.pages}]] 页，共 [[${result.data.total}]]-->
+        <!--                条数据-->
+        <!--            </td>-->
+        <!--        </tr>-->
+        <span class="r"><a th:attr="_href=@{/mutilBuy}"
                            onclick="mutil_buy(this)"
                            class="btn btn-success radius"><i class="Hui-iconfont">&#xe6b9;</i> 结账</a>
         </span>
     </div>
-</div>
+</divid>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" th:src="@{/lib/jquery/1.9.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/lib/layer/2.4/layer.js}"></script>

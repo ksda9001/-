@@ -14,4 +14,8 @@ public interface OrderMapper {
     int cargoDel(String ordersNo);
 
     int mutilDelete(List<String> noList);
+
+    Double getOrderPriceByNo(Integer ordersNo);
+
+    Integer getUserIdByNo(String x);
 }
