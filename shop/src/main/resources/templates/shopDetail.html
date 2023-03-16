@@ -570,7 +570,7 @@ h5,h6{font-size:1em;}
             </div>
         </div>
         <form action="/shopComment" id="shopComment" class="ui form" method="post">
-            <input type="hidden" name="shop" th:value="${id}">
+            <input id="getId" type="hidden" name="shop" th:value="${id}">
             <input id="parent" type="hidden" name="parent" value="-1">
             <div class="field">
                     <textarea id="id_content" name="content"

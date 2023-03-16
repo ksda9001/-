@@ -23,6 +23,6 @@ $(document).ready(function () {
 // 提交购物车
 function buy() {
     // /mall/order/createOrder?id=1
-    var url = "http://localhost:8080/mall/order/createOrder" + search +"&buynum=" + $("#buynum").val();
+    var url = "http://localhost:8082/createOrder" +"/" + $("#getId").val() + "/" + $("#buynum").val();
     window.location = url;
 }

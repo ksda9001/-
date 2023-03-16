@@ -24,14 +24,9 @@ window.onload = function () {
    h		弹出层高度（缺省调默认值）
 */
 
-/*管理员-增加*/
-function admin_add(title, url, w, h) {
-    layer_show(title, url, w, h);
-}
-
 /*管理员-单独删除*/
 function deleteConfirm(u) {
-    layer.confirm('确认要删除该账户吗？', function () {
+    layer.confirm('确认要删除该商品吗？', function () {
         $.ajax({
             type: "delete",
             dataType: "json",
@@ -41,10 +36,10 @@ function deleteConfirm(u) {
                 if (data.code === 200) {
                     layer.msg('已删除!', {icon: 6, time: 1000});
                     //成功后定时刷新页面
-                    setTimeout(() => location.replace(location.href), 1000);
+                    setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
                 } else {
                     layer.msg('删除失败!', {icon: 5, time: 1000});
-                    setTimeout(() => location.replace(location.href), 1000);
+                    setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
                 }
             }
         });
@@ -52,7 +47,7 @@ function deleteConfirm(u) {
 }
 
 /*管理员-批量删除*/
-function admin_del(t) {
+function shop_del(t) {
     var check = Check();
     // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
     if (check) {
@@ -68,7 +63,7 @@ function admin_del(t) {
                 num++;
             }
         }
-        layer.confirm('确认要删除选中的' + num + '个账户吗？', function () {
+        layer.confirm('确认要删除选中的' + num + '个商品吗？', function () {
             $.ajax({
                 type: "delete",
                 dataType: "json",
@@ -88,11 +83,6 @@ function admin_del(t) {
             });
         });
     }
-}
-
-/*管理员-编辑*/
-function admin_edit(title, url, id, w, h) {
-    layer_show(title, url, w, h);
 }
 
 //页面刷新
@@ -124,8 +114,8 @@ function checkboxs(objNam) {
     return objYN;
 }
 
-function admin_stop(t) {
-    layer.confirm('确认要停用该账户吗？', function () {
+function shop_stop(t) {
+    layer.confirm('确认要停用该商品吗？', function () {
         $.ajax({
             type: "put",
             dataType: "json",
@@ -145,8 +135,8 @@ function admin_stop(t) {
     });
 }
 
-function admin_start(t) {
-    layer.confirm('确认要启用该账户吗？', function () {
+function shop_start(t) {
+    layer.confirm('确认要启用该商品吗？', function () {
         $.ajax({
             type: "put",
             dataType: "json",
@@ -184,11 +174,11 @@ function editStatus(status) {
             }
         }
         if (status === 0) {
-            layer.confirm('确认要停用选中的' + num + '个账户吗？', function () {
+            layer.confirm('确认要停用选中的' + num + '个商品吗？', function () {
                 $.ajax({
                     type: "put",
                     dataType: "json",
-                    url: "/admin/editStatus/" + status,
+                    url: "/shop/editStatus/" + status,
                     data: userId.serialize(),
                     async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
                     success: function (data) {
@@ -205,11 +195,11 @@ function editStatus(status) {
             });
         }
         if (status === 1) {
-            layer.confirm('确认要启用选中的' + num + '个账户吗？', function () {
+            layer.confirm('确认要启用选中的' + num + '个商品吗？', function () {
                 $.ajax({
                     type: "put",
                     dataType: "json",
-                    url: "/admin/editStatus/" + status,
+                    url: "/shop/editStatus/" + status,
                     data: userId.serialize(),
                     async: false,  // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
                     success: function (data) {
@@ -228,17 +218,85 @@ function editStatus(status) {
     }
 }
 
-function topage(num){
-    // 获取关键字输入框的值，为其序列化，
-    var keywords = $("input[name=keywords]").serialize();
-    // 获取当前路径 URL 然后为路径 url 拼接关键字参数并重新提交
-    window.location = window.location.pathname + "?" + keywords + "&pageNum=" + num;
+/*批量删除*/
+function mutil_del(t) {
+    var check = Check();
+    // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
+    if (check) {
+        var ordersNo = $("input[name=ordersNo]");
+        var obj = Array.from(document.querySelectorAll('.item')); // 获取复选框
+        var objLen = obj.length; // 获取复选框总数
+        var i;
+        var num;
+        num = 0;
+        //统计选中复选框个数
+        for (i = 0; i < objLen; i++) {
+            if (obj[i].checked == true) {
+                num++;
+            }
+        }
+        layer.confirm('确认要删除选中的' + num + '个商品吗？', function () {
+            $.ajax({
+                type: "delete",
+                dataType: "json",
+                url: $(t).attr("_href"),
+                data: ordersNo.serialize(),
+                async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg('已删除!', {icon: 6, time: 1000});
+                        //成功后定时刷新页面
+                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
+                    } else {
+                        layer.msg('删除失败!', {icon: 5, time: 1000});
+                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
+                    }
+                }
+            });
+        });
+    }
 }
 
-// //搜索（暂时无用）
-//     function search() {
-//         //获取关键字并进行序列化
-//         var keywords = $("input[name=keywords]").serialize();
-//         //获取当前路径URL并拼接关键字
-//         window.location = window.location.pathname + "?" + keywords;
-//     }
+/*批量删除*/
+function mutil_buy(t) {
+    var check = Check();
+    // 获取所有页面要删除的数据集合，并判断用户至少选择了一条数据
+    if (check) {
+        var ordersNo = $("input[name=ordersNo]");
+        var obj = Array.from(document.querySelectorAll('.item')); // 获取复选框
+        var objLen = obj.length; // 获取复选框总数
+        var i;
+        var num;
+        num = 0;
+        //统计选中复选框个数
+        for (i = 0; i < objLen; i++) {
+            if (obj[i].checked == true) {
+                num++;
+            }
+        }
+        layer.confirm('确认要购买选中的' + num + '个商品吗？', function () {
+            $.ajax({
+                type: "put",
+                dataType: "json",
+                url: $(t).attr("_href"),
+                data: ordersNo.serialize(),
+                async: false,   // 设置 Ajax 之间的同步（该同步会让Ajax锁住浏览器请求响应交互，保证每次请求被响应之后才释放浏览器）
+                success: function (data) {
+                    if (data.code === 200) {
+                        layer.msg('已删除!', {icon: 6, time: 1000});
+                        //成功后定时刷新页面
+                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
+                    } else {
+                        layer.msg('删除失败!', {icon: 5, time: 1000});
+                        setTimeout(() => location.replace("http://127.0.0.1:8082/checkCargo"), 1000);
+                    }
+                }
+            });
+        });
+    }
+}
+
+function topage(num){
+    // 获取当前路径 URL 然后为路径 url 拼接关键字参数并重新提交
+    window.location = window.location.pathname + "?pageNum=" + num;
+}

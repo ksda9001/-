@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users implements Serializable {
-    private String userID;
+    private Integer userID;
     private String userName;
     private String userSex;
     private String password;

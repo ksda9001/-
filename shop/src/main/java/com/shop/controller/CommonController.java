@@ -71,4 +71,9 @@ public class CommonController {
         model.addAttribute("types",shopTypeList);
         return "shopControl/shopUpload";
     }
+
+    @GetMapping("/adminAdd")
+    public String adminAdd(){
+        return "admin/adminAdd";
+    }
 }

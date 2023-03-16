@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.commons.entity.Orders">
+        <id column="ordersNo" property="ordersNo"/>
+        <result column="ordersId" property="ordersId"/>
+        <result column="ordersTime" property="ordersTime"/>
+        <result column="ordersPrice" property="ordersPrice"/>
+        <result column="ordersUser" property="ordersUser"/>
+        <result column="ordersState" property="ordersState"/>
+        <result column="ordersNum" property="ordersNum"/>
+        <result column="ordersImg" property="ordersImg"/>
+        <result column="ordersTitle" property="ordersTitle"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ordersId
+        , ordersTitle
+        , ordersTime,ordersPrice,
+        ordersUser, ordersState, ordersNum, ordersImg
+    </sql>
+
+    <insert id="createOrder" parameterType="com.commons.entity.Orders">
+        INSERT INTO shop_orders (ordersId, ordersTitle, ordersTime, ordersPrice, ordersUser, ordersState, ordersNum, ordersImg)
+        VALUES (#{ordersId},
+                #{ordersTitle}, #{ordersTime},
+                #{ordersPrice}, #{ordersUser},
+                #{ordersState}, #{ordersNum}, #{ordersImg});
+    </insert>
+
+    <delete id="cargoDel">
+        DELETE
+        FROM shop_orders
+        WHERE ordersNo = #{ordersNo}
+    </delete>
+
+    <delete id="mutilDelete">
+        DELETE FROM shop_orders
+        WHERE
+        <foreach collection="arg0" item="Nos" separator=" , " open=" ordersNo in ( " close=" ) ">
+            #{Nos}
+        </foreach>
+    </delete>
+
+    <select id="getOrderListByUserId" resultType="com.commons.entity.Orders">
+        SELECT *
+        FROM shop_orders
+        WHERE ordersUser = #{ordersUser}
+    </select>
+</mapper>
