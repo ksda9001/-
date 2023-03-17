@@ -81,7 +81,7 @@
                                             </div>
                                         </div>
                                         <div class="five wide column right aligned ">
-                                            <a th:href="@{'/page_types?typeId='+${blog.getType().getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${blog.getType().getName()}">一年总结</a>
+                                            <a th:href="@{'/page_types?typeId='+${blog.getType().getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${blog.getType().getName()}"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="ui teal segment">
                             <a  target="_blank" class="ui basic teal left pointing label item m-margin-tb-tiny" th:each="tag,iter:${tags}" th:href="@{'/page_tags?tagId='+${tag.getId()}}">
-                                <span th:text="${tag.getName()}">一年总结</span> <div class="detail" th:text="${tag.getNumber()}">1</div>
+                                <span th:text="${tag.getName()}"></span> <div class="detail" th:text="${tag.getNumber()}">1</div>
                             </a>
 
 
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                         <div class="ui segment " th:each="rblog,iter:${recommendedBlogs}">
-                            <a th:href="@{'/page_blog/'+${rblog.getId()}}" target="_blank" class="m-color-black m-text-thin" th:text="${rblog.getTitle()}">【一年总结】记我的大一生活</a>
+                            <a th:href="@{'/page_blog/'+${rblog.getId()}}" target="_blank" class="m-color-black m-text-thin" th:text="${rblog.getTitle()}"></a>
                         </div>
 
                     </div>
@@ -182,12 +182,13 @@
                 <div class="five wide column">
                     <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
                     <div class="ui inverted link list">
-                        <a class="item m-text-lined" th:each="newBlog,iter:${newBlogs}" th:href="@{'/page_blog/'+${newBlog.getId()}}" th:text="${newBlog.getTitle()}">博客1</a>
+                        <a class="item m-text-lined" th:each="newBlog,iter:${newBlogs}" th:href="@{'/page_blog/'+${newBlog.getId()}}" th:text="${newBlog.getTitle()}"></a>
                     </div>
                 </div>
             </div>
             <div class="ui divider "></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny m-text-lined">Copyright © 中医养生保健系统 </p>
+            <a style='color:#00B5AD' th:href="@{/connectAdmin}">联系我们</a>
         </div>
     </footer>
 

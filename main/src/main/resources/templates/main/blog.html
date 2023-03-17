@@ -80,7 +80,7 @@
                         <br>
                         <div >
                             文章标签：
-                            <div class="ui  basic teal left pointing label" th:each="tag,iter:${blog.getTags()}" th:text="${tag.getName()}">一年总结</div>
+                            <div class="ui  basic teal left pointing label" th:each="tag,iter:${blog.getTags()}" th:text="${tag.getName()}"></div>
                         </div>
 
                     </div>
@@ -585,6 +585,7 @@ h5,h6{font-size:1em;}
             </div>
             <div class="ui divider "></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny m-text-lined">Copyright © 中医养生保健系统 </p>
+            <a style='color:#00B5AD' th:href="@{/connectAdmin}">联系我们</a>
         </div>
     </footer>
 

@@ -50,15 +50,15 @@
             <div class="ui teal segment ">
                 <!--列表-->
                 <div class="ui attached segment ">
-                    <div th:if="${blogs.size()==0}"><h2>没有更多的博客啦！不过未来说不定会有哦！QAQ</h2></div>
+                    <div th:if="${blogs.size()==0}"><h2></h2></div>
                     <div class="ui padded segment vertical m-padded-b-small m-mobile-clear" th:each="blog,iter:${blogs}">
                         <div class="ui grid mobile reversed stackable">
                             <div class="ui eleven wide column">
                                 <a th:href="@{'/page_blog/'+${blog.getId()}}" target="_blank">
-                                    <h3 class="ui header" th:text="${blog.getTitle()}" >【一年总结】记我的大一生活</h3>
+                                    <h3 class="ui header" th:text="${blog.getTitle()}" ></h3>
                                 </a>
 
-                                <p class="m-text-thin m-text-lined m-text-spaced" th:text="${blog.getSummary()}">去年夏天，平平无奇的我过着平平无奇的生活。一年之后，依旧是那个夏天，依旧是那个我，只是此时的我成了别人口中的“大佬”。而同是参加软件创新实验室的集训，别人是听课的那个，而我是讲课的那个。我感慨无限，是啊，奋斗真的可以改变人呢！</p>
+                                <p class="m-text-thin m-text-lined m-text-spaced" th:text="${blog.getSummary()}"></p>
                                 <div class="ui grid">
                                     <div class="eleven wide column">
                                         <div class="ui list horizontal link mini ">
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <div class="five wide column right aligned ">
-                                        <a th:href="@{'/page_types?typeId='+${blog.getType().getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${blog.getType().getName()}">一年总结</a>
+                                        <a th:href="@{'/page_types?typeId='+${blog.getType().getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${blog.getType().getName()}"></a>
                                     </div>
                                 </div>
                             </div>
@@ -118,6 +118,7 @@
             </div>
             <div class="ui divider "></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny m-text-lined">Copyright © 中医养生保健系统 </p>
+            <a style='color:#00B5AD' th:href="@{/connectAdmin}">联系我们</a>
         </div>
     </footer>
 

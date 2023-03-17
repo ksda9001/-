@@ -14,11 +14,11 @@
     <div class="ui container">
         <div class="ui inverted secondary menu stackable">
             <h2 class="ui teal header item">中医养生保健系统</h2>
-            <a href="http://127.0.0.1:8080/" class="m-item item m-mobile-hide active"><i class="home icon"></i>首页</a>
+            <a href="http://127.0.0.1:8080/" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
             <a href="http://127.0.0.1:8080/page_types" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
             <a href="http://127.0.0.1:8080/page_tags" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
             <a href="http://127.0.0.1:8080/archives" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-            <a href="/getVideoListByUser" class="m-item item m-mobile-hide"><i class="video icon"></i>视频</a>
+            <a href="/getVideoListByUser" class="m-item item m-mobile-hide active"><i class="video icon"></i>视频</a>
             <a href="http://127.0.0.1:8082/getShopByName" class="m-item item m-mobile-hide"><i class="gem icon"></i>商城</a>
             <div class="m-item right item  m-mobile-hide">
                 <form th:action="@{getVideoByName}" method="get">
@@ -178,6 +178,7 @@
             <div class="ui center aligned container">
                 <div class="ui divider "></div>
                 <p class="m-text-thin m-text-spaced m-opacity-tiny m-text-lined">Copyright © 中医养生保健系统 </p>
+                <a style='color:#00B5AD' href="http://localhost:8080/connectAdmin">联系我们</a>
             </div>
         </footer>
 </body>

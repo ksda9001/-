@@ -57,11 +57,11 @@
                 <a th:each="tag,iter:${tags}"  th:href="@{'/page_tags?tagId='+${tag.getId()}}">
 
                     <div class="ui labeled button m-margin-tb-tiny" th:if="${tag.getId()== tagId}">
-                        <div class="ui basic teal button" th:text="${tag.getName()}">一年总结</div>
+                        <div class="ui basic teal button" th:text="${tag.getName()}"></div>
                         <div class="ui basic teal left pointing label" th:text="${tag.getNumber()}">12</div>
                     </div>
                     <div class="ui labeled button m-margin-tb-tiny" th:unless="${tag.getId()==tagId}">
-                        <div  class="ui basic  button" th:text="${tag.getName()}">一年总结</div>
+                        <div  class="ui basic  button" th:text="${tag.getName()}"></div>
                         <div class="ui basic left pointing label" th:text="${tag.getNumber()}">12</div>
                     </div>
                 </a>
@@ -71,15 +71,15 @@
             <div class="ui teal segment ">
                 <!--列表-->
                 <div class="ui attached segment ">
-                    <div th:if="${blogs.size()==0}"><h2>没有更多的博客啦！不过未来说不定会有哦！QAQ</h2></div>
+                    <div th:if="${blogs.size()==0}"><h2></h2></div>
                     <div class="ui padded segment vertical m-padded-b-small m-mobile-clear" th:each="blog,iter:${blogs}">
                         <div class="ui grid mobile reversed stackable">
                             <div class="ui ten wide column">
                                 <a th:href="@{'/page_blog/'+${blog.getId()}}" target="_blank">
-                                    <h3 class="ui header" th:text="${blog.getTitle()}" >【一年总结】记我的大一生活</h3>
+                                    <h3 class="ui header" th:text="${blog.getTitle()}" ></h3>
                                 </a>
 
-                                <p class="m-text-thin m-text-lined m-text-spaced" th:text="${blog.getSummary()}">去年夏天，平平无奇的我过着平平无奇的生活。一年之后，依旧是那个夏天，依旧是那个我，只是此时的我成了别人口中的“大佬”。而同是参加软件创新实验室的集训，别人是听课的那个，而我是讲课的那个。我感慨无限，是啊，奋斗真的可以改变人呢！</p>
+                                <p class="m-text-thin m-text-lined m-text-spaced" th:text="${blog.getSummary()}"></p>
                                 <div class="ui grid">
                                     <div class="seven wide column">
                                         <div class="ui list horizontal link mini ">
@@ -88,15 +88,15 @@
                                                 <div class="content"><a href="#" class="header ">Admin</a></div>
                                             </div>
                                             <div class="item">
-                                                <i class="calendar icon" ></i><span th:text="${#dates.format(blog.getDate(),'yyyy-MM-dd')}">2020-7-04</span>
+                                                <i class="calendar icon" ></i><span th:text="${#dates.format(blog.getDate(),'yyyy-MM-dd')}"></span>
                                             </div>
                                             <div class="item">
-                                                <i class="eye icon"></i><span th:text="${blog.getViews()}">3012</span>
+                                                <i class="eye icon"></i><span th:text="${blog.getViews()}"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="nine wide column right aligned ">
-                                        <a th:each="tag1,iter:${blog.getTags()}" th:href="@{'/page_tags?tagId='+${tag1.getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${tag1.getName()}">一年总结</a>
+                                        <a th:each="tag1,iter:${blog.getTags()}" th:href="@{'/page_tags?tagId='+${tag1.getId()}}" target="_blank" class="ui label teal basic m-padded-tiny" th:text="${tag1.getName()}"></a>
                                     </div>
                                 </div>
                             </div>
@@ -139,6 +139,7 @@
             </div>
             <div class="ui divider "></div>
             <p class="m-text-thin m-text-spaced m-opacity-tiny m-text-lined">Copyright © 中医养生保健系统 </p>
+            <a style='color:#00B5AD' th:href="@{/connectAdmin}">联系我们</a>
         </div>
     </footer>
 

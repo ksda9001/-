@@ -64,9 +64,9 @@
                 <tbody>
                 <tr th:each="tag,iter:${tags}">
                     <td th:text="${iter.index+1}">1</td>
-                    <td th:text="${tag.getName()}">一年总结</td>
+                    <td th:text="${tag.getName()}"></td>
                     <td th:text="${tag.getNumber()}">3</td>
-                    <td th:text="${#dates.format(tag.getDate(),'yyyy-MM-dd')}">2020-7-04 15:12</td>
+                    <td th:text="${#dates.format(tag.getDate(),'yyyy-MM-dd')}"></td>
                     <td>
                         <a class="ui button  teal basic mini " th:href="'/admin/tag-input/'+${tag.getId()}">编辑</a>
                         <a class="ui button  red basic mini " th:attr="data-id=${tag.getId()}"

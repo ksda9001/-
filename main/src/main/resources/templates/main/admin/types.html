@@ -65,9 +65,9 @@
                 <tbody>
                 <tr th:each="type,iter:${types}">
                     <td th:text="${iter.index+1}">1</td>
-                    <td th:text="${type.getName()}">一年总结</td>
+                    <td th:text="${type.getName()}"></td>
                     <td th:text="${type.getNumber()}">3</td>
-                    <td th:text="${#dates.format(type.getDate(),'yyyy-MM-dd')}">2020-7-04 15:12</td>
+                    <td th:text="${#dates.format(type.getDate(),'yyyy-MM-dd')}"></td>
                     <td>
                         <a class="ui button  teal basic mini "
                            th:href="@{'/admin/types-input/'+${type.getId()}}">编辑</a>

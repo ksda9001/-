@@ -10,4 +10,12 @@ public class CommonController {
     public String videoUpload() {
         return "pictureUpload/pictureUpload";
     }
+    @GetMapping("/connectAdmin")
+    public String connectAdmin() {
+        return "main/connectAdmin";
+    }
+    @GetMapping("/connectUser")
+    public String connectUser() {
+        return "main/connectUser";
+    }
 }
