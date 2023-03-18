@@ -3,6 +3,7 @@ package com.shop.controller;
 import com.commons.entity.*;
 import com.shop.service.ShopCommentService;
 import com.shop.service.ShopService;
+import com.shop.util.MarkdownUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,8 @@ public class ShopDetailController {
         model.addAttribute("pic", shop.getPictureUrl());
         model.addAttribute("isComment", shop.getIsComment());
         model.addAttribute("id", shop.getId());
-        model.addAttribute("content",shop.getContent());
+        //Markdown转html
+        model.addAttribute("content", MarkdownUtil.markdownToHtmlExtens(shop.getContent()));
         shopService.addShopVv(id);
 
 

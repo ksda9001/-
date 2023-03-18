@@ -21,10 +21,14 @@
         <div class="ui inverted secondary menu stackable">
             <h2 class="ui teal header item">中医养生保健系统</h2>
             <a href="http://127.0.0.1:8080/" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
-            <a href="http://127.0.0.1:8080/page_types" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-            <a href="http://127.0.0.1:8080/page_tags" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-            <a href="http://127.0.0.1:8080/archives" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-            <a href="http://127.0.0.1:8081/getVideoListByUser" class="m-item item m-mobile-hide"><i class="video icon"></i>视频</a>
+            <a href="http://127.0.0.1:8080/page_types" class="m-item item m-mobile-hide"><i
+                    class="idea icon"></i>分类</a>
+            <a href="http://127.0.0.1:8080/page_tags" class="m-item item m-mobile-hide"><i
+                    class="tags icon"></i>标签</a>
+            <a href="http://127.0.0.1:8080/archives" class="m-item item m-mobile-hide"><i
+                    class="clone icon"></i>归档</a>
+            <a href="http://127.0.0.1:8081/getVideoListByUser" class="m-item item m-mobile-hide"><i
+                    class="video icon"></i>视频</a>
             <a href="/getShopByName" class="m-item item m-mobile-hide active"><i class="gem icon"></i>商城</a>
             <div class="m-item right item  m-mobile-hide">
                 <form th:action="@{getShopByName}" method="get">
@@ -79,9 +83,9 @@
                     <div class="ui mini input focus" style="margin-top:10px;">
                         <h3 class="ui header">数量</h3>
                         &nbsp;&nbsp;&nbsp;
-                        <input id="min" class="mini ui button" type="button" value="-" />
-                        <input id="buynum" type="text" value="1" style="width:60px;" />
-                        <input id="add" class="mini ui button" type="button" value="+" />
+                        <input id="min" class="mini ui button" type="button" value="-"/>
+                        <input id="buynum" type="text" value="1" style="width:60px;"/>
+                        <input id="add" class="mini ui button" type="button" value="+"/>
                     </div>
                     <br><br><br><br>
                     <div>
@@ -90,10 +94,10 @@
                                     class="ui cart arrow down icon"></i>加入购物车
                             </button>
                         </a>
-<!--                        <a onclick="buy();" href="javascript:void(0);">-->
-<!--                            <button class="ui button teal m-mobile-wide">购买-->
-<!--                            </button>-->
-<!--                        </a>-->
+                        <!--                        <a onclick="buy();" href="javascript:void(0);">-->
+                        <!--                            <button class="ui button teal m-mobile-wide">购买-->
+                        <!--                            </button>-->
+                        <!--                        </a>-->
                     </div>
                 </div>
             </div>
@@ -598,7 +602,6 @@ h5,h6{font-size:1em;}
 
 
 </div>
-</div>
 
 <div class="ui vertical icon buttons  m-fixed m-padded m-right-bottom">
 
@@ -642,11 +645,6 @@ h5,h6{font-size:1em;}
         // For headings inside relative or absolute positioned containers within content.
         hasInnerContainers: true,
     });
-    $('#payButton').popup({
-        popup: $('.popup.payQR'),
-        on: 'click',
-        position: 'bottom center'
-    })
     $('#menuButton').popup({
         popup: $('#catalogue'),
         on: 'click',

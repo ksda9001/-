@@ -147,6 +147,7 @@ public class PageController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("main/blog");
         BlogCombination blogCombination = blogCombinationService.findBlogCombinationById(id);
+        //markdown转html
         blogCombination.setContent(MarkdownUtil.markdownToHtmlExtens(blogCombination.getContent()));
         mv.addObject("blog", blogCombination);
         Map<String, List<Comment>> map = commentService.findCommentsByBlog(id);
