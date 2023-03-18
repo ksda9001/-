@@ -76,12 +76,12 @@
                 <tr>
                     <th colspan="6">
                         <div class="ui pagination menu mini">
-                            <a th:href="@{'getVideoList'}" class="ui item ">首页</a>
+                            <a th:href="@{'getPictureList'}" class="ui item ">首页</a>
                             <a th:if="${pageInfo.hasPreviousPage}"
-                               th:href="@{'getVideoList?pageNum='+${pageInfo.pageNum-1}}" class="ui item ">上一页</a>
+                               th:href="@{'getPictureList?pageNum='+${pageInfo.pageNum-1}}" class="ui item ">上一页</a>
                             <a th:if="${pageInfo.hasNextPage}"
-                               th:href="@{'getVideoList?pageNum='+${pageInfo.pageNum+1}}" class="ui item ">下一页</a>
-                            <a th:href="@{'getVideoList?pageNum='+${pageInfo.pages }}" class="ui item ">末页</a>
+                               th:href="@{'getPictureList?pageNum='+${pageInfo.pageNum+1}}" class="ui item ">下一页</a>
+                            <a th:href="@{'getPictureList?pageNum='+${pageInfo.pages }}" class="ui item ">末页</a>
                         </div>
                     </th>
                 </tr>
