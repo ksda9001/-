@@ -23,7 +23,7 @@
 
     <update id="cargoControlFin">
         UPDATE shop_total_orders SET
-        state = "待发货！"
+        state = "已完成！"
         WHERE id = #{id}
     </update>
 
