@@ -85,7 +85,7 @@ public class VideoController {
         return "videoIndex";
     }
 
-    //推荐视频
+    //视频分类
     @GetMapping(value = "/getVideoListBySystem")
     public String getVideoListBySystem(@RequestParam(value = "pageNum", defaultValue = "1") Integer num, ModelMap model) {
         PageHelper.startPage(num, 5);
