@@ -171,12 +171,12 @@ public class ShopController {
         if (result) {
             return "forward:/getShopList";
         }
-        model.addAttribute("message", "推送失败！");
+        model.addAttribute("message", "推荐失败！");
         return "tip";
     }
 
-    @GetMapping(value = "/deleteVideoById")
-    public String deleteVideoById(Integer id, Model model) {
+    @GetMapping(value = "/deleteShopById")
+    public String deleteShopById(Integer id, Model model) {
         Shop shop = shopService.getShopById(id);
         if (shop != null) {
             int result = shopService.deleteShopById(id);
