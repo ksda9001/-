@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class PictureController {
@@ -39,7 +40,7 @@ public class PictureController {
 
     @GetMapping(value = "/getPictureByNameByAdmin")
     public String getPictureByNameByAdmin(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                        String title, Model model) {
+                                          String title, Model model) {
         PageHelper.startPage(pageNum, 5);
         PageHelper.orderBy("uploadTime desc");
         List<Video> list = pictureService.getPictureByName(title);
@@ -53,10 +54,11 @@ public class PictureController {
     public String pictureUpload(String title, MultipartFile file, Model model) throws IOException {
         Picture picture = new Picture();
         String pictureName = file.getOriginalFilename();  //获取上传后的文件名
-        // String newVideoName = this.getName(videoName);  //根据上传的文件名重新生成一份新的文件名
 //        String path = request.getServletContext().getRealPath("video");
+        //文件可进行重命名去重复
+        String newPictureName = this.getName(pictureName);  //根据上传的文件名重新生成一份新的文件名
         String path = XMLUtil2.getText();
-        File picturePath = new File(path, pictureName);
+        File picturePath = new File(path, newPictureName);
 
         if (!picturePath.getParentFile().exists()) {
             picturePath.getParentFile().mkdirs();
@@ -64,7 +66,7 @@ public class PictureController {
 
         file.transferTo(picturePath);
 
-        picture.setPath("/picture/" + pictureName);
+        picture.setPath("/picture/" + newPictureName);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         picture.setUploadTime(timestamp);
         picture.setTitle(title);
@@ -79,6 +81,19 @@ public class PictureController {
         }
     }
 
+    //上传文件重命名去重复
+    private String getName(String fileName) {
+        String random = UUID.randomUUID().toString().toUpperCase();
+        String ext = this.getFileExt(fileName);
+        //原文件名去后缀名、加随机字符串再补回后缀名
+        return fileName.replace(ext, "") + random + ext;
+    }
+
+    //文件后缀名获取器
+    private String getFileExt(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
+    }
+
     @GetMapping(value = "/deletePictureById")
     public String deletePictureById(Integer id, Model model) {
 
@@ -87,7 +102,7 @@ public class PictureController {
         if (picture != null) {
             int result = pictureService.deletePictureById(id);
             if (result > 0) {
-                //去path中重复的“/video/”
+                //去path中重复的“/picture/”
                 String path = picture.getPath().replace("/picture/", "");
                 File file = new File(XMLUtil2.getText() + path);
                 if (file.exists()) {

@@ -85,6 +85,11 @@ public class UploadController {
         return fileName.replace(ext, "") + random + ext;
     }
 
+    //文件后缀名获取器
+    private String getFileExt(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
+    }
+
     //文件大小获取器
     private String getSize(File file) {
         String size = "";
@@ -100,10 +105,5 @@ public class UploadController {
             size = df.format((double) fileLength / 1073741824) + "GB";
         }
         return size;
-    }
-
-    //文件后缀名获取器
-    private String getFileExt(String fileName) {
-        return fileName.substring(fileName.lastIndexOf("."));
     }
 }
