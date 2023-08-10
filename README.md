@@ -3,6 +3,34 @@
 #### 介绍
 一个使用SpringBoot制作的微服务化的博客、视频网站、购物网站三合一系统。
 同时使用rabbitMq构建了一个简单的聊天室功能DEMO。
+#### 开发使用技术
+##### 前端技术
+Bootstrap	
+Semantic UI	
+editormd	
+Artplayer	
+tocbot	
+Typo.css	
+Prism	
+Hui	
+FontAwesome文字图标	
+animate.css	
+##### 后端技术	
+Mybatis 架构	
+MariaDB 数据库	
+IBM Semeru Runtimes	
+Redis 缓存	
+RabbitMQ 消息队列	
+Apache Shiro 安全框架	
+支付宝沙箱	
+Druid 数据源	
+PageHelper 分页系统	
+Lombok	
+Alibaba Fastjson	
+Commonmark 解析器	
+Apache Maven 架构	
+Thymeleaf 模板	
+SpringBoot框架	
 
 本项目参考自[简而美的个人博客系统](https://gitee.com/dreamchasers/myblog)
 ##### 注册界面
@@ -17,3 +45,5 @@
 ![商品购买](%E5%9B%BE%E7%89%875.png)
 ##### 聊天室
 ![聊天室](%E5%9B%BE%E7%89%876.png)
+
+其余说明将会在稍后补充
